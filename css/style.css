@@ -1,7 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --color-primary: rgb(11, 125, 169);
+    --color-secondary: rgb(236, 164, 0);
+    --color-tertiary: rgb(0, 21, 53);
+    --color-bright: #fff;
+    --color-light: #f3f3f3;
+    --color-gray: #cdcdcd;
+    --color-dark: #111;
+    --color-success: #2ECC40;
+    --color-warning: #FFDC00;
+    --color-danger: #FF4136;
+    /* size */
+    --xxs: 0.3em;
+    --xs: 0.5em;
+    --s: 0.8em;
+    --m: 1em;
+    --l: 1.5em;
+    --xl: 2em;
 }
 
 @font-face {
@@ -10,7 +24,15 @@
     src: local('Poppins'), url('../assets/font/Poppins-Meduim.ttf') format("truetype");
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
     font-size: 16px;
+    color: var(--color-dark);
+    background-color: var(--color-gray);
 }
