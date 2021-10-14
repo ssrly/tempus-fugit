@@ -16,7 +16,7 @@ WBS Training AG - IEPHPP – PHP Projekt (12.10. - 25.10.2021)
 
 ### Installing
 
-* MySQL dump in  ./doku/
+* MySQL dump in  ./assets/doc/
 
 ## Author
 
