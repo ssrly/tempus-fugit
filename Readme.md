@@ -4,6 +4,7 @@ WBS Training AG - IEPHPP – PHP Projekt (12.10. - 25.10.2021)
 
 ## Description
 
+* Agile Project
 * Login / Registration
 * User / Admin groups
 * Timetracking by Users
