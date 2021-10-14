@@ -3,3 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap;
+    src: local('Poppins'), url('../assets/font/Poppins-Meduim.ttf') format("truetype");
+}
+
+body {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}

@@ -16,7 +16,30 @@
 </head>
 
 <body>
-    <h1>Tempus Fugit</h1>
+    <header>
+        <h1>Header - Tempus Fugit</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Navigation</a></li>
+            <li><a href="#">Navigation</a></li>
+            <li><a href="#">Navigation</a></li>
+            <li><a href="#">Navigation</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section>
+            <h2>h2 Tempus Fugit</h2>
+            <h3>h3 Tempus Fugit</h3>
+            <h4>h4 Tempus Fugit</h4>
+            <hr>
+            <p>p Temus Fugit</p>
+            <p>p 03:30</p>
+        </section>
+    </div>
+    <footer>
+        Footer
+    </footer>
 </body>
 
 </html>
