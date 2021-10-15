@@ -1,6 +1,7 @@
 <form id="user-form" action="#" method="POST">
     <div class="form-group">
         <h3>User Form</h3>
+        <span class="close">X</span>
     </div>
     <div class="form-group">
         <input id="user-form-name" class="form-text-input required" type="text" name="name" placeholder="Your Lastname"

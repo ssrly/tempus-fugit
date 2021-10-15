@@ -6,16 +6,16 @@
                 <i class="fa fa-solid fa-home"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'users' ? 'active' : ''; ?>">
-            <a href="index.php?page=users">
-                <span class="link-name">Users</span>
-                <i class="fa fa-solid fa-user"></i>
-            </a>
-        </li>
         <li class="<?=  $page === 'times' ? 'active' : ''; ?>">
             <a href="index.php?page=times">
                 <span class="link-name">Times</span>
                 <i class="fa fa-solid fa-stopwatch"></i>
+            </a>
+        </li>
+        <li class="<?=  $page === 'users' ? 'active' : ''; ?>">
+            <a href="index.php?page=users">
+                <span class="link-name">Users</span>
+                <i class="fa fa-solid fa-user"></i>
             </a>
         </li>
         <li class="<?=  $page === 'groups' ? 'active' : ''; ?>">

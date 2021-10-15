@@ -1,5 +1,9 @@
 <form id="login-form" action="#" method="POST">
     <div class="form-group">
+        <h3>Login</h3>
+        <span class="close">X</span>
+    </div>
+    <div class="form-group">
         <input id="login-form-email" class="form-text-input required" type="mail" name="email" placeholder="Your E-Mail"
             required>
     </div>
