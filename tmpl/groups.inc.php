@@ -1,6 +1,6 @@
 <?php
 
-$sql = "SELECT * FROM 'groups'";
+$sql = "SELECT * FROM `groups`";
 
 /** @var $dbCon ./../dbConnection.php */
 $statement = $dbCon->query($sql);
@@ -19,6 +19,7 @@ $groups = $statement->fetchAll();
             <tr>
                 <th>Group-Name</th>
                 <th>Description</th>
+                <th>Admin Rights</th>
             </tr>
             </thead>
             <tbody>
@@ -27,6 +28,7 @@ $groups = $statement->fetchAll();
                 <tr>
                     <td><?= $group['name']; ?></td>
                     <td><?= $group['description']; ?></td>
+                    <td><?= $group['is_admin'] ? 'Yes' : 'No'; ?></td>
                 </tr>
             <?php
             endforeach ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 15. Okt 2021 um 11:32
+-- Erstellungszeit: 15. Okt 2021 um 22:28
 -- Server-Version: 10.4.19-MariaDB
 -- PHP-Version: 7.4.20
 
@@ -32,16 +32,17 @@ CREATE TABLE `groups` (
   `name` varchar(80) NOT NULL,
   `description` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Daten für Tabelle `groups`
 --
 
-INSERT INTO `groups` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Hat volle Rechte auf alles und jeden.', '2021-10-14 07:28:30', '2021-10-14 07:28:30'),
-(2, 'User', 'Was waeren wir ohne unsere User.', '2021-10-14 07:28:30', '2021-10-14 07:28:30');
+INSERT INTO `groups` (`id`, `name`, `description`, `created_at`, `updated_at`, `is_admin`) VALUES
+(1, 'Admin', 'Hat volle Rechte auf alles und jeden.', '2021-10-14 07:28:30', '2021-10-14 07:28:30', 1),
+(2, 'User', 'Was waeren wir ohne unsere User.', '2021-10-14 07:28:30', '2021-10-14 07:28:30', 0);
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,8 @@ CREATE TABLE `user_group` (
 
 INSERT INTO `user_group` (`id`, `user_id`, `group_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 1, '2021-10-14 07:56:06', '2021-10-14 07:56:06'),
-(2, 3, 2, '2021-10-14 07:56:06', '2021-10-14 07:56:06');
+(2, 3, 2, '2021-10-14 07:56:06', '2021-10-14 07:56:06'),
+(3, 4, 2, '2021-10-15 11:11:00', '2021-10-15 11:11:00');
 
 --
 -- Indizes der exportierten Tabellen
@@ -174,7 +176,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT für Tabelle `user_group`
 --
 ALTER TABLE `user_group`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints der exportierten Tabellen
