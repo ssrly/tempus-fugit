@@ -20,9 +20,11 @@
 <body>
     <?php include_once './tmpl/element/header.inc.php'; ?>
     <?php include_once './tmpl/element/nav.inc.php'; ?>
+    <hr>
     <div class="container">
         <?php include_once $tmpl; ?>
     </div>
+    <hr>
     <?php include_once './tmpl/element/footer.inc.php'; ?>
 </body>
 
