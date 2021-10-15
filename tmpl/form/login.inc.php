@@ -15,6 +15,7 @@
     </div>
     <p id="form-required-info">Required</p>
     <div class="form-group">
+        <input type="hidden" name="csrf_token" value="<?= $_SESSION['token'] ?>"/>
         <input id="form-register" class="btn btn-default" type="submit" name="register" value="Register">
         <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
         <input id="form-login" class="btn btn-success" type="submit" name="login" value="Login">
