@@ -26,6 +26,7 @@
     </div>
     <hr>
     <?php include_once './tmpl/element/footer.inc.php'; ?>
+    <?php include_once './tmpl/element/modal.inc.php'; ?>
 </body>
 
 </html>
