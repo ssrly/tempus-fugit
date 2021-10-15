@@ -1,22 +1,23 @@
 <form id="time-form" action="./php/time.php" method="POST">
-    <div class="form-group">
+    <div class="modal-header">
         <h3>Time Form</h3>
         <span class="close">X</span>
     </div>
     <div class="form-group">
-        <label for="startdate">Start</label>
-        <input id="time-form-startdate" class="form-date-input" type="date" name="startdate">
-        <!-- <label for="starttime">Start Time</label> -->
-        <input id="time-form-starttime" class="form-time-input" type="time" name="starttime">
+        <label for="form-startdate">Start</label>
+        <input id="form-startdate" class="form-date-input" type="date" name="startdate">
+        <label for="form-starttime"></label>
+        <input id="form-starttime" class="form-time-input" type="time" name="starttime">
     </div>
     <div class="form-group">
-        <label for="enddate">End</label>
-        <input id="time-form-enddate" class="form-date-input" type="date" name="enddate">
-        <!-- <label for="endtime">End Time</label> -->
-        <input id="time-form-endtime" class="form-time-input" type="time" name="endtime">
+        <label for="form-enddate" aria-label="">End</label>
+        <input id="form-enddate" class="form-date-input" type="date" name="enddate">
+        <label for="form-endtime"></label>
+        <input id="form-endtime" class="form-time-input" type="time" name="endtime">
     </div>
     <div class="form-group">
-        <textarea cols="50" rows="3" wrap="soft" name="description">Description...</textarea>
+        <label for="form-description"></label>
+        <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description">Description...</textarea>
     </div>
     <div class="form-group">
         <p id="form-required-info">Required</p>

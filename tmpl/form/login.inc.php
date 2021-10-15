@@ -1,15 +1,17 @@
 <form id="login-form" action="./php/login.php" method="POST">
-    <div class="form-group">
-        <h3>Login</h3>
+    <div class="modal-header">
+        <h3>Login Form</h3>
         <span class="close">X</span>
     </div>
     <div class="form-group">
-        <input id="login-form-email" class="form-text-input required" type="mail" name="email" placeholder="Your E-Mail"
-            required>
+        <label for="form-email"></label>
+        <input id="form-email" class="form-text-input required" type="email" name="email"
+               placeholder="Your E-Mail" required>
     </div>
     <div class="form-group">
-        <input id="login-form-pwd" class="form-text-input required" type="password" name="pwd"
-            placeholder="Your Password" required>
+        <label for="form-pwd"></label>
+        <input id="form-pwd" class="form-text-input required" type="password" name="pwd"
+               placeholder="Your Password" required>
     </div>
     <div class="form-group">
         <p id="form-required-info">Required</p>
