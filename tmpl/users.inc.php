@@ -32,6 +32,9 @@ for ($i = 0; $i < $count; $i++) {
     </section>
 
     <section>
+        <button id="btn-add-user" class="btn btn-success">
+            Add User
+        </button>
         <table>
             <thead>
             <tr>
@@ -53,8 +56,8 @@ for ($i = 0; $i < $count; $i++) {
                     <td><?= $user['mail']; ?></td>
                     <td><?= $user['user_number']; ?></td>
                     <td><?= $user['group_names']; ?></td>
-                    <td><?= $user['created_at']; ?></td>
-                    <td><?= $user['updated_at']; ?></td>
+                    <td><?= formatDate($user['created_at']); ?></td>
+                    <td><?= formatDate($user['updated_at']); ?></td>
                 </tr>
             <?php
             endforeach ?>
