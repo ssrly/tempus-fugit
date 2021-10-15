@@ -1,42 +1,39 @@
 <?php
 
 session_start();
-require_once 'bdConnection.inc.php';
-require_once 'functions.inc.php';
-
-if (isset($_POST['login'])) {
-//    login
-} elseif (isset($_POST['register'])) {
-//    register
-}
+require_once 'dbConnection.php';
+require_once 'functions.php';
 
 $mail = prepareInput($_POST['mail']);
-$pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+$pwd = prepareInput($_POST['pwd']);
+//----------------------------------
 
-
-$motto = bereinige($_POST['motto']) ?? '';
-$ueber = bereinige($_POST['ueber']) ?? '';
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++
-//erstmal prüfen, ob die E-Mail schon in der DB existiert?
-$mailEindeutig = 'SELECT * FROM users WHERE email = ?';
-$statement = $db->prepare($mailEindeutig);
-$statement->execute([$mail]);
-$user = $statement->fetch();
-
-if (!($user)) {
-    $sql = 'INSERT INTO users(name,email,passwort,motto,ueber_mich,created_at) 
-                      VALUES(?,?,?,?,?, NOW())';
-    $statement = $db->prepare($sql);
-    $statement->execute([$nn, $mail, $pwd, $motto, $ueber]);
-
-
-    $_SESSION['meldung'] = 'Registrierung erfolgreich, Bitte sich einloggen.';
-    //header('Location: ../index.php');
+if ($_SESSION['code'] !== $_POST['cap']) {
+    $_SESSION['msg'] = 'Zeichen sind falsch';
     redirect('../index.php');
 } else {
-    //E-Mail existiert schon, kein insert
-    $_SESSION['meldung'] = 'Die E-Mail existiert!<br />Bitte andere E-Mail eingeben';
-    //header('Location: ../index.php?page=neu');
-    redirect('../index.php?page=neu');
+    if (!empty($_POST) && $_POST['csrf_token'] === $_SESSION['token']) {
+        $sql = 'SELECT * FROM users WHERE mail = ?';
+        /**@var $dbCon ./dbConnection.php * */
+        $statement = $dbCon->prepare($sql);
+        $statement->execute([$mail]);
+        $user = $statement->fetch();
+        if ($user && password_verify($pwd, $user['pwd'])) {
+            //$_SESSION['meldung'] = 'Alles gut';
+            /*
+              function loggeEin($mail, $benutzername, $id) {
+                $_SESSION['eingeloggt'] = $mail;
+                $_SESSION['eingeloggt_user'] = $benutzername;
+                $_SESSION['id'] = $id;
+              }
+            */
+            // Wenn ja (wenn die Daten übereinstimmen), logge den Benutzer ein
+            //daten in session speichern
+            login($user['mail'], $user['id']);
+        } else {
+            $_SESSION['msg'] = 'Wrong login. Try again. Did you forget your password? Please contact an admin.';
+        }
+        //---------------
+    }
+    redirect('../index.php');
 }

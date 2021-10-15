@@ -1,51 +1,31 @@
 <?php
 
 session_start();
-require_once 'bdConnection.inc.php';
-require_once 'functions.inc.php';
+require_once 'dbConnection.php';
+require_once 'functions.php';
 
-if (isset($_POST['login'])) {
-//login
-} else if (isset($_POST['register'])) {
-//register
-} else {
-  //update
-}
-
-//auf die Werte der Felder in form zugreifen
-// name="nn", name="mail", usw...
-$nn = bereinige($_POST['nn']);
-$mail = bereinige($_POST['mail']);
+$name = prepareInput($_POST['name']);
+$firstName = prepareInput($_POST['firstname']);
+$description = prepareInput($_POST['description']);
+$mail = prepareInput($_POST['mail']);
+$userNumber = prepareInput($_POST['usernumber']);
 $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
-
-$motto = bereinige($_POST['motto']) ?? '';
-$ueber = bereinige($_POST['ueber']) ?? '';
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++
-//erstmal prüfen, ob die E-Mail schon in der DB existiert?
-$mailEindeutig = 'SELECT * FROM users WHERE email = ?';
-$statement = $db->prepare($mailEindeutig);
+$sql = 'SELECT * FROM users WHERE mail = ?';
+/**@var $dbCon ./dbConnection.php * */
+$statement = $dbCon->prepare($sql);
 $statement->execute([$mail]);
 $user = $statement->fetch();
 
-if(!($user))
-{
-  //E-Mail ist eindeutig, insert soll gehen
-  //E-Mail existiert nicht ei 2. mal
-  $sql = 'INSERT INTO users(name,email,passwort,motto,ueber_mich,created_at) 
-                      VALUES(?,?,?,?,?, NOW())';
-  $statement = $db->prepare($sql);
-  $statement->execute([$nn,$mail,$pwd,$motto,$ueber]);
-  
-
-  $_SESSION['meldung'] = 'Registrierung erfolgreich, Bitte sich einloggen.';
-  //header('Location: ../index.php');
-  redirect('../index.php');
-} 
-else {
-  //E-Mail existiert schon, kein insert
-  $_SESSION['meldung'] = 'Die E-Mail existiert!<br />Bitte andere E-Mail eingeben';
-  //header('Location: ../index.php?page=neu');
-  redirect('../index.php?page=neu');
+if (!$user) {
+    $sql = 'INSERT INTO users(name,firstname,description,mail,user_number,pwd,created_at) 
+            VALUES(?,?,?,?,?,?,`NOW`())';
+    /**@var $dbCon ./dbConnection.php * */
+    $statement = $dbCon->prepare($sql);
+    $statement->execute([$name, $firstName, $description, $mail, $userNumber, $pwd]);
+    $_SESSION['msg'] = 'Successfully saved.';
+} else {
+    $_SESSION['msg'] = 'Your E-Mail is already taken. Try again. Did you forget your password? Please contact an admin.';
 }
+
+redirect('../index.php');
