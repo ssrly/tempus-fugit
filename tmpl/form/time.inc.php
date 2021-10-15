@@ -19,7 +19,7 @@
         <p id="form-required-info">Required</p>
     </div>
     <div class="form-group">
-        <input id="time-form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
-        <input id="time-form-login" class="btn btn-success" type="submit" name="Login" value="Login">
+        <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
+        <input id="form-login" class="btn btn-success" type="submit" name="Login" value="Login">
     </div>
 </form>
