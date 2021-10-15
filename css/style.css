@@ -21,7 +21,7 @@
 @font-face {
     font-family: 'Poppins';
     font-display: swap;
-    src: local('Poppins'), url('../assets/font/Poppins-Meduim.ttf') format("truetype");
+    src: local('Poppins'), url('./../assets/font/Poppins-Medium.ttf') format("truetype");
 }
 
 * {
@@ -64,11 +64,11 @@ footer {
     margin-bottom: var(--xs);
 }
 
-nav {
+.navigation {
     background-color: var(--color-tertiary);
 }
 
-nav * {
+.navigation * {
     color: var(--color-light);
     list-style: none;
     text-decoration: none;
