@@ -32,14 +32,12 @@
 
 body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    font-size: 16px;
     color: var(--color-dark);
-    background-color: var(--color-gray);
+    background-color: var(--color-light);
 }
 
 header,
 footer {
-    position: fixed;
     background-color: var(--color-primary);
     color: var(--color-secondary);
     width: 100%;
@@ -51,9 +49,19 @@ footer * {
     text-decoration: none;
 }
 
+header {
+    display: flex;
+}
+
 footer {
+    position: absolute;
     bottom: 0;
     margin-top: auto;
+}
+
+.container {
+    margin-top: var(--s);
+    margin-bottom: var(--xs);
 }
 
 nav {
