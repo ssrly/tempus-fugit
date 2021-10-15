@@ -1,27 +1,40 @@
-<nav>
+<nav class="navigation">
     <ul>
         <li class="<?= (empty($page) || $page === 'home') ? 'active' : ''; ?>">
-            <a href="index.php?page=home">Home</a>
+            <a href="index.php?page=home">
+                <span class="link-name">Home</span>
+                <i class="fa-solid fa-house"></i>
+            </a>
         </li>
         <li class="<?=  $page === 'users' ? 'active' : ''; ?>">
-            <a href="index.php?page=users">Users</a>
-            <i class="fa-solid fa-user"></i>
+            <a href="index.php?page=users">
+                <span class="link-name">Users</span>
+                <i class="fa fa-solid fa-user"></i>
+            </a>
         </li>
         <li class="<?=  $page === 'times' ? 'active' : ''; ?>">
-            <a href="index.php?page=times">Times</a>
-            <i class="fa-solid fa-stopwatch"></i>
+            <a href="index.php?page=times">
+                <span class="link-name">Times</span>
+                <i class="fa fa-solid fa-stopwatch"></i>
+            </a>
         </li>
         <li class="<?=  $page === 'groups' ? 'active' : ''; ?>">
-            <a href="index.php?page=groups">Groups</a>
-            <i class="fa-solid fa-user-group"></i>
+            <a href="index.php?page=groups">
+                <span class="link-name">Groups</span>
+                <i class="fa-solid fa-user-group"></i>
+            </a>
         </li>
         <li class="<?=  $page === 'docu' ? 'active' : ''; ?>">
-            <a href="index.php?page=docu">Docu</a>
-            <i class="fa-solid fa-book"></i>
+            <a href="index.php?page=docu">
+                <span class="link-name">Docu</span>
+                <i class="fa fa-solid fa-book"></i>
+            </a>
         </li>
         <li class="<?=  $page === 'impressum' ? 'active' : ''; ?>">
-            <a href="index.php?page=impressum">Impressum</a>
-            <i class="fa-solid fa-section"></i>
+            <a href="index.php?page=impressum">
+                <span class="link-name">Impressum</span>
+                <i class="fa-solid fa-section"></i>
+            </a>
         </li>
     </ul>
 </nav>
