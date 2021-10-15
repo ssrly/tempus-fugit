@@ -32,8 +32,8 @@ $times = $statement->fetchAll();
             <?php
             foreach ($times as $time): ?>
                 <tr>
-                    <td><?= $time['start_at']; ?></td>
-                    <td><?= $time['end_at']; ?></td>
+                    <td><?= formatDate($time['start_at']); ?></td>
+                    <td><?= formatDate($time['end_at']); ?></td>
                     <td><?= $time['duration']; ?></td>
                     <td><?= $time['description']; ?></td>
                 </tr>

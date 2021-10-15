@@ -5,9 +5,9 @@
  * @param string $format
  * @return string
  */
-function formatDate(string $dbDate, string $format = '%Y/%B/%d %H:%M:%S'): string
+function formatDate(string $dbDate, string $format = '%d.%m.%Y %H:%M'): string
 {
-    return utf8_encode(strftime($format, strtotime($$dbDate)));
+    return utf8_encode(strftime($format, strtotime($dbDate)));
 }
 
 /**
