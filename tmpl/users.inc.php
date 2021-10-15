@@ -1,7 +1,9 @@
 <div class="container">
-    <section>
+    <section class="info-text">
         <h2>Users - Tempus Fugit</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores minima aut distinctio! Animi adipisci est
-            hic, at excepturi earum qui provident ex nobis nulla deleniti saepe, vel incidunt aliquam esse!</p>
+        <p>This view shows saved user informations.</p>
+        <p>As an admin all existing users are shown. As an user only your data will be providet.</p>
+        <p>As an admin you can select an user an go to his / her times. Please be carefull!</p>
     </section>
+
 </div>

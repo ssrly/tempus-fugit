@@ -1,7 +1,17 @@
 <div class="container">
-    <section>
+    <section class="info-text">
         <h2>Impressum - Tempus Fugit</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores minima aut distinctio! Animi adipisci est
-            hic, at excepturi earum qui provident ex nobis nulla deleniti saepe, vel incidunt aliquam esse!</p>
+        <p>This is a project as part of a further education by Stephan Reinhold. The educational institution is WBS -
+            Training AG</p>
+        <p>A comercial use at this stage is not planed.</p>
+        <h3>Contact</h3>
+        <ul>
+            <!-- TODO: add address -->
+            <li>Stephan Reinhold</li>
+            <li>Strasse Hausnummer</li>
+            <li>09130 Chemnitz</li>
+            <li><a href="tel:+49....">+49....</a></li>
+            <li><a href="mailto:test@test.de">test@test.de</a></li>
+        </ul>
     </section>
 </div>

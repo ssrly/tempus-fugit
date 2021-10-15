@@ -1,8 +1,7 @@
 <div class="container">
-    <section>
+    <section class="info-text">
         <h2>Error - Tempus Fugit</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores minima aut distinctio! Animi adipisci est
-            hic, at excepturi earum qui provident ex nobis nulla deleniti saepe, vel incidunt aliquam esse!</p>
+        <p>Something went wrong! Try again... Please dont push the admin over the edge, be reasonable.</p>
         <p><a href="index.php">Back to Home</a></p>
     </section>
 </div>
