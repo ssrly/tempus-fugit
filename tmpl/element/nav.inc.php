@@ -6,39 +6,39 @@
                 <i class="fa fa-solid fa-home"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'times' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'times' ? 'active' : ''; ?>">
             <a href="index.php?page=times">
                 <span class="link-name">Times</span>
                 <i class="fa fa-solid fa-stopwatch"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'users' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'users' ? 'active' : ''; ?>">
             <a href="index.php?page=users">
                 <span class="link-name">Users</span>
                 <i class="fa fa-solid fa-user"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'groups' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'groups' ? 'active' : ''; ?>">
             <a href="index.php?page=groups">
                 <span class="link-name">Groups</span>
                 <i class="fas fa-user-friends"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'docu' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'docu' ? 'active' : ''; ?>">
             <a href="index.php?page=docu">
                 <span class="link-name">Docu</span>
                 <i class="fa fa-solid fa-book"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'impressum' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'impressum' ? 'active' : ''; ?>">
             <a href="index.php?page=impressum">
                 <span class="link-name">Impressum</span>
                 <i class="fas fa-address-card"></i>
             </a>
         </li>
-        <li class="<?=  $page === 'setup' ? 'active' : ''; ?>">
-            <a href="index.php?page=setup">
-                <span class="link-name">Setup</span>
+        <li class="<?= $page === 'setup' ? 'active' : ''; ?>">
+            <a href="index.php?page=settings">
+                <span class="link-name">Settings</span>
                 <i class="fas fa-cog"></i>
             </a>
         </li>
