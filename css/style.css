@@ -92,3 +92,13 @@ footer {
     font-size: var(--m);
     margin: 0 var(--xxs);
 }
+
+#form-required-info {
+    font-size: var(--s);
+}
+
+#form-required-info:before {
+    margin: 0 var(--xxs);
+    content: '*';
+    color: var(--color-danger);
+}
