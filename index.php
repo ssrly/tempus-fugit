@@ -10,6 +10,10 @@ $tmpl = './tmpl/error.inc.php';
 switch($page) {
     case '':
     case 'home': $tmpl = './tmpl/home.inc.php'; break;
+    case 'users': $tmpl = './tmpl/users.inc.php'; break;
+    case 'times': $tmpl = './tmpl/times.inc.php'; break;
+    case 'roles': $tmpl = './tmpl/roles.inc.php'; break;
+    case 'impressum': $tmpl = './tmpl/impressum.inc.php'; break;
     case 'docu': $tmpl = './tmpl/docu.inc.php'; break;
     default: break;
 }
