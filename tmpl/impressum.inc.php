@@ -8,10 +8,10 @@
         <ul>
             <!-- TODO: add address -->
             <li>Stephan Reinhold</li>
-            <li>Strasse Hausnummer</li>
+            <li>Strasse 12</li>
             <li>09130 Chemnitz</li>
-            <li><a href="tel:+49....">+49....</a></li>
-            <li><a href="mailto:test@test.de">test@test.de</a></li>
+            <li>Phone: <a href="tel:+49....">+49....</a></li>
+            <li>Mail: <a href="mailto:test@test.de">test@test.de</a></li>
         </ul>
     </section>
 </div>

@@ -13,9 +13,7 @@
         <input id="form-pwd" class="form-text-input required" type="password" name="pwd"
                placeholder="Your Password" required>
     </div>
-    <div class="form-group">
-        <p id="form-required-info">Required</p>
-    </div>
+    <p id="form-required-info">Required</p>
     <div class="form-group">
         <input id="form-register" class="btn btn-default" type="submit" name="register" value="Register">
         <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">

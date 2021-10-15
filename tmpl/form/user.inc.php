@@ -33,9 +33,7 @@
         <label for="form-description"></label>
         <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description">Description...</textarea>
     </div>
-    <div class="form-group">
-        <p id="form-required-info">Required</p>
-    </div>
+    <p id="form-required-info">Required</p>
     <div class="form-group">
         <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
         <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">
