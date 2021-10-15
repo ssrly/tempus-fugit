@@ -13,7 +13,9 @@
         <input id="form-pwd" class="form-text-input required" type="password" name="pwd"
                placeholder="Your Password" required>
     </div>
-    <p id="form-required-info">Required</p>
+    <div class="form-group">
+        <p id="form-required-info">Required</p>
+    </div>
     <div class="form-group">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['token'] ?>"/>
         <input id="form-register" class="btn btn-default" type="submit" name="register" value="Register">
