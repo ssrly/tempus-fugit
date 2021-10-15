@@ -65,7 +65,18 @@ footer {
 }
 
 .navigation {
+    float: right;
+    width: fit-content;
     background-color: var(--color-tertiary);
+}
+
+.navigation ul li {
+    margin: var(--m);
+}
+
+.navigation ul li a {
+    float: right;
+    padding: var(--s);
 }
 
 .navigation * {
@@ -75,13 +86,38 @@ footer {
 }
 
 .brand,
+.login-out,
 .copyright {
     display: flex;
 }
 
-.brand i {
-    font-size: var(--l);
+.brand i,
+.login-out i {
+    font-size: var(--xl);
     margin: var(--xxs);
+}
+
+.login-out span {
+    font-size: var(--xl);
+}
+
+.login-out {
+    position: absolute;
+    right: 25%;
+}
+
+.nav-icon {
+    position: absolute;
+    right: 2%;
+    margin: var(--xxs);
+}
+
+.nav-icon .bar {
+    width: var(--l);
+    height: 3px;
+    margin: var(--xs) 0;
+    background-color: var(--color-secondary);
+    border-radius: 1px;
 }
 
 .copyright {

@@ -8,6 +8,11 @@
         </div>
     </a>
 
+    <a href="./php/login.php" id="" class="login-out">
+        <span>Login</span>
+        <i class="fas fa-sign-in-alt"></i>
+    </a>
+
     <div class="nav-icon">
         <div id="bar-1" class="bar"></div>
         <div id="bar-2" class="bar"></div>
