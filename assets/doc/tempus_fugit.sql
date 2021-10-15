@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Okt 2021 um 09:57
+-- Erstellungszeit: 15. Okt 2021 um 11:32
 -- Server-Version: 10.4.19-MariaDB
 -- PHP-Version: 7.4.20
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `roles`
+-- Tabellenstruktur für Tabelle `groups`
 --
 
-CREATE TABLE `roles` (
+CREATE TABLE `groups` (
   `id` int(10) NOT NULL,
   `name` varchar(80) NOT NULL,
   `description` text DEFAULT NULL,
@@ -36,10 +36,10 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `roles`
+-- Daten für Tabelle `groups`
 --
 
-INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+INSERT INTO `groups` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'Hat volle Rechte auf alles und jeden.', '2021-10-14 07:28:30', '2021-10-14 07:28:30'),
 (2, 'User', 'Was waeren wir ohne unsere User.', '2021-10-14 07:28:30', '2021-10-14 07:28:30');
 
@@ -97,22 +97,22 @@ INSERT INTO `users` (`id`, `name`, `firstname`, `description`, `mail`, `user_num
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `user_role`
+-- Tabellenstruktur für Tabelle `user_group`
 --
 
-CREATE TABLE `user_role` (
+CREATE TABLE `user_group` (
   `id` int(10) NOT NULL,
   `user_id` int(10) DEFAULT NULL,
-  `role_id` int(10) DEFAULT NULL,
+  `group_id` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Daten für Tabelle `user_role`
+-- Daten für Tabelle `user_group`
 --
 
-INSERT INTO `user_role` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `user_group` (`id`, `user_id`, `group_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 1, '2021-10-14 07:56:06', '2021-10-14 07:56:06'),
 (2, 3, 2, '2021-10-14 07:56:06', '2021-10-14 07:56:06');
 
@@ -121,9 +121,9 @@ INSERT INTO `user_role` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
 --
 
 --
--- Indizes für die Tabelle `roles`
+-- Indizes für die Tabelle `groups`
 --
-ALTER TABLE `roles`
+ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -141,21 +141,21 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `mail` (`mail`);
 
 --
--- Indizes für die Tabelle `user_role`
+-- Indizes für die Tabelle `user_group`
 --
-ALTER TABLE `user_role`
+ALTER TABLE `user_group`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `role_id_from_roles_in_user_role` (`role_id`),
-  ADD KEY `user_id_from_users_in_user_role` (`user_id`);
+  ADD KEY `user_id_from_users_in_user_role` (`user_id`),
+  ADD KEY `group_id_from_groups_in_user_group` (`group_id`);
 
 --
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT für Tabelle `roles`
+-- AUTO_INCREMENT für Tabelle `groups`
 --
-ALTER TABLE `roles`
+ALTER TABLE `groups`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -171,9 +171,9 @@ ALTER TABLE `users`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT für Tabelle `user_role`
+-- AUTO_INCREMENT für Tabelle `user_group`
 --
-ALTER TABLE `user_role`
+ALTER TABLE `user_group`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -187,10 +187,10 @@ ALTER TABLE `times`
   ADD CONSTRAINT `user_id_from_users_in_times` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints der Tabelle `user_role`
+-- Constraints der Tabelle `user_group`
 --
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `role_id_from_roles_in_user_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE,
+ALTER TABLE `user_group`
+  ADD CONSTRAINT `group_id_from_groups_in_user_group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `user_id_from_users_in_user_role` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
