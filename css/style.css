@@ -36,3 +36,50 @@ body {
     color: var(--color-dark);
     background-color: var(--color-gray);
 }
+
+header,
+footer {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    width: 100%;
+}
+
+header *,
+footer * {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+}
+
+nav {
+    background-color: var(--color-tertiary);
+}
+
+nav * {
+    color: var(--color-light);
+    list-style: none;
+    text-decoration: none;
+}
+
+.brand,
+.copyright {
+    display: flex;
+}
+
+.brand i {
+    font-size: var(--l);
+    margin: var(--xxs);
+}
+
+.copyright {
+    margin: var(--xxs);
+}
+
+.copyright i {
+    font-size: var(--m);
+    margin: 0 var(--xxs);
+}
