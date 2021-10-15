@@ -3,7 +3,7 @@
         <li class="<?= (empty($page) || $page === 'home') ? 'active' : ''; ?>">
             <a href="index.php?page=home">
                 <span class="link-name">Home</span>
-                <i class="fa-solid fa-house"></i>
+                <i class="fa fa-solid fa-home"></i>
             </a>
         </li>
         <li class="<?=  $page === 'users' ? 'active' : ''; ?>">
@@ -21,7 +21,7 @@
         <li class="<?=  $page === 'groups' ? 'active' : ''; ?>">
             <a href="index.php?page=groups">
                 <span class="link-name">Groups</span>
-                <i class="fa-solid fa-user-group"></i>
+                <i class="fas fa-user-friends"></i>
             </a>
         </li>
         <li class="<?=  $page === 'docu' ? 'active' : ''; ?>">
@@ -33,7 +33,13 @@
         <li class="<?=  $page === 'impressum' ? 'active' : ''; ?>">
             <a href="index.php?page=impressum">
                 <span class="link-name">Impressum</span>
-                <i class="fa-solid fa-section"></i>
+                <i class="fas fa-address-card"></i>
+            </a>
+        </li>
+        <li class="<?=  $page === 'setup' ? 'active' : ''; ?>">
+            <a href="index.php?page=setup">
+                <span class="link-name">Setup</span>
+                <i class="fas fa-cog"></i>
             </a>
         </li>
     </ul>
