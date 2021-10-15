@@ -1,4 +1,4 @@
-<form id="user-form" action="#" method="POST">
+<form id="user-form" action="./php/user.php" method="POST">
     <div class="form-group">
         <h3>User Form</h3>
         <span class="close">X</span>

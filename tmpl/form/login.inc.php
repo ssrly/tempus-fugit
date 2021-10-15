@@ -1,4 +1,4 @@
-<form id="login-form" action="#" method="POST">
+<form id="login-form" action="./php/login.php" method="POST">
     <div class="form-group">
         <h3>Login</h3>
         <span class="close">X</span>
@@ -15,8 +15,8 @@
         <p id="form-required-info">Required</p>
     </div>
     <div class="form-group">
-        <input id="form-register" class="btn btn-default" type="submit" name="Register" value="Register">
-        <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
-        <input id="form-login" class="btn btn-success" type="submit" name="Login" value="Login">
+        <input id="form-register" class="btn btn-default" type="submit" name="register" value="Register">
+        <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
+        <input id="form-login" class="btn btn-success" type="submit" name="login" value="Login">
     </div>
 </form>
