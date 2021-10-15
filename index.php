@@ -1,6 +1,8 @@
 <?php
 
+session_start();
 require_once './php/debug.php';
+require_once './php/functions.php';
 require_once './php/dbConnection.php';
 
 $page = $_GET["page"] ?? '';
