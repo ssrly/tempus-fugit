@@ -16,8 +16,8 @@
         <input id="form-endtime" class="form-time-input" type="time" name="endtime">
     </div>
     <div class="form-group">
-        <label for="form-description"></label>
-        <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description">Description...</textarea>
+        <label for="form-description">Description</label>
+        <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
     </div>
     <div class="form-group">
         <p id="form-required-info">Required</p>
