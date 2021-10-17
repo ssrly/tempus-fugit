@@ -39,7 +39,9 @@ $groups = getAllGroups($dbCon);
                         'groupId' => $group['id'],
                         'name' => $group['name'],
                         'description' => $group['description'],
-                        'isAdmin' => $group['is_admin']
+                        'isAdmin' => $group['is_admin'],
+                        'createdAt' => $group['created_at'],
+                        'updatedAt' => $group['updated_at'] ?? '',
                     ])
                 ); ?>
                 <tr class="group-tr group-tr-table" data-group="<?= $groupJson; ?>">
@@ -49,7 +51,7 @@ $groups = getAllGroups($dbCon);
                     <td>
                         <button id="btn-detail" class="btn btn-detail btn-info" type="button"
                                 title="Open Group Detail">
-                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-info"></i>
                             <span>Open Detail</span>
                         </button>
                     </td>

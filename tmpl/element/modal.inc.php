@@ -11,5 +11,12 @@
         } else {
             include_once './tmpl/form/login.inc.php';
         } ?>
+        <div class="modal-detail hidden">
+            <div class="modal-header">
+                <h3>Details</h3>
+                <span class="close">X</span>
+            </div>
+            <div class="modal-body detail-body"></div>
+        </div>
     </div>
 </div>

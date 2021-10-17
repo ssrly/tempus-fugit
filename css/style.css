@@ -139,3 +139,7 @@ footer {
     content: '*';
     color: var(--color-danger);
 }
+
+.hidden {
+    display: none ! important;
+}
