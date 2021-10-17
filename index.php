@@ -7,6 +7,10 @@ require_once './php/dbConnection.php';
 $page = $_GET["page"] ?? '';
 $tmpl = './tmpl/error.inc.php';
 
+if (isset($_SESSION['msg'])) {
+    $msg = $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
 
 switch ($page) {
     case '':

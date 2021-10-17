@@ -60,7 +60,8 @@ function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['name' => 'admi
     foreach ($rowWithValue as $row => $value) {
         $sql = 'SELECT * FROM `groups` WHERE ? = ?';
         $statement = $dbCon->prepare($sql);
-        if ($statement->execute([$row, $value])) {
+        $statement->execute([$row, $value]);
+        if ($statement->fetch()) {
             $_SESSION['msg'] = 'A record "' . $value . '" already exists.';
             return false;
         }
@@ -91,7 +92,7 @@ function updateGroup(PDO $dbCon, int $id)
 {
     $values = getGroupFormData();
     if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
-        $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, created_at = NOW()
+        $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, updated_at = NOW()
             WHERE id = ?';
         $statement = $dbCon->prepare($sql);
         $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
@@ -104,9 +105,9 @@ function updateGroup(PDO $dbCon, int $id)
  */
 function deleteGroup(PDO $dbCon, int $id)
 {
-    $sql = "DELETE FROM `groups` WHERE id = $id";
+    $sql = 'DELETE FROM `groups` WHERE id = ?';
     $statement = $dbCon->prepare($sql);
-    $statement->execute();
+    $statement->execute([$id]);
 }
 
 /**
@@ -116,7 +117,7 @@ function deleteGroup(PDO $dbCon, int $id)
  */
 function getGroup(PDO $dbCon, int $id): array
 {
-    $sql = "SELECT * FROM `groups` WHERE id = ?";
+    $sql = 'SELECT * FROM `groups` WHERE id = ?';
     $statement = $dbCon->query($sql);
     $statement->execute([$id]);
 
@@ -129,7 +130,7 @@ function getGroup(PDO $dbCon, int $id): array
  */
 function getAllGroups(PDO $dbCon): array
 {
-    $sql = "SELECT * FROM `groups`";
+    $sql = 'SELECT * FROM `groups`';
     $statement = $dbCon->query($sql);
 
     return $statement->fetchAll();

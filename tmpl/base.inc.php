@@ -22,7 +22,6 @@ include_once './tmpl/element/header.inc.php'; ?>
 include_once './tmpl/element/nav.inc.php'; ?>
 <hr>
 <div class="container">
-
     <?php
     /** @var $tmpl ./../index.php */
     include_once $tmpl; ?>

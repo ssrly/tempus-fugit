@@ -9,7 +9,8 @@ $groups = getAllGroups($dbCon);
     <section class="info-text">
         <h2>Groups - Tempus Fugit</h2>
         <p>In this view, all existing Groups are shown. Just for information purposes.</p>
-        <?= var_dump($_SESSION); ?>
+        <!--TODO: error msg-->
+        <?= $msg ?? '' ?>
     </section>
 
     <section>
