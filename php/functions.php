@@ -25,7 +25,8 @@ function prepareInput(string $userInput, string $encoding = 'UTF-8'): string
  */
 function redirect(string $url = '/')
 {
-    header('Location: ' . $url);
+    $root = substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '/php/'));
+    header('Location: ' . $root . $url);
     exit;
 }
 
