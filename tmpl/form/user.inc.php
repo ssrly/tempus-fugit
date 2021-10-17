@@ -31,7 +31,14 @@
     </div>
     <div class="form-group">
         <label for="form-description">Description</label>
-        <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description">.</textarea>
+        <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="form-roles">Role(s):</label>
+        <select name="roles" id="form-roles" class="form-multi-select required" multiple required>
+            <option value="2">User</option>
+            <option value="1">Admin</option>
+        </select>
     </div>
     <div class="form-group">
         <p id="form-required-info">Required</p>
