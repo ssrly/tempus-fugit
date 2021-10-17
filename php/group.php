@@ -52,14 +52,35 @@ function getGroupFormData(): array
 
 /**
  * @param PDO $dbCon
+ * @param array|string[] $rowWithValue
+ * @return bool
+ */
+function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['name' => 'admin']): bool
+{
+    foreach ($rowWithValue as $row => $value) {
+        $sql = 'SELECT * FROM `groups` WHERE ? = ?';
+        $statement = $dbCon->prepare($sql);
+        if ($statement->execute([$row, $value])) {
+            $_SESSION['msg'] = 'A record "' . $value . '" already exists.';
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * @param PDO $dbCon
  */
 function createGroup(PDO $dbCon)
 {
-    $sql = 'INSERT INTO `groups`(name,description,is_admin,created_at) 
-            VALUES(?,?,?,NOW())';
-    $statement = $dbCon->prepare($sql);
     $values = getGroupFormData();
-    $statement->execute([$values['name'], $values['description'], $values['isAdmin']]);
+    if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
+        $sql = 'INSERT INTO `groups`(name,description,is_admin,created_at) 
+            VALUES(?,?,?,NOW())';
+        $statement = $dbCon->prepare($sql);
+        $statement->execute([$values['name'], $values['description'], $values['isAdmin']]);
+    }
 }
 
 /**
@@ -68,11 +89,13 @@ function createGroup(PDO $dbCon)
  */
 function updateGroup(PDO $dbCon, int $id)
 {
-    $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, created_at = NOW()
-            WHERE id = ?';
-    $statement = $dbCon->prepare($sql);
     $values = getGroupFormData();
-    $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
+    if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
+        $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, created_at = NOW()
+            WHERE id = ?';
+        $statement = $dbCon->prepare($sql);
+        $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
+    }
 }
 
 /**
