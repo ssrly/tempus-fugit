@@ -1,11 +1,8 @@
 <?php
 
-$sql = "SELECT * FROM times
-        ORDER BY start_at";
-
-/** @var $dbCon ./../dbConnection.php */
-$statement = $dbCon->query($sql);
-$times = $statement->fetchAll();
+require_once './php/time.php';
+/** @var $dbCon ./../php/dbConnection.php */
+$times = getAllTimesByUser($dbCon, 4);
 ?>
 
 <div class="container">
@@ -14,8 +11,16 @@ $times = $statement->fetchAll();
         <p>In this view, all existing times by your time tracking are shown in form of a list.</p>
         <p>New times can be created and existing ones can be reviewed, updated or deleted by the you.</p>
         <p>As admin you can reach this view by selecting an user in the users view and administrate his or her times. As
-            an user
-            only your own times are shown.</p>
+            an user only your own times are shown.</p>
+        <!--TODO: error msg-->
+        <?= $msg ?? '' ?>
+    </section>
+
+    <section>
+        <button id="btn-create" class="btn btn-create btn-success" type="button" title="Create New Group">
+            <i class="fas fa-plus"></i>
+            <span>Add Time</span>
+        </button>
     </section>
 
     <section>
@@ -26,16 +31,41 @@ $times = $statement->fetchAll();
                 <th>End</th>
                 <th>Duration</th>
                 <th>Description</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <?php
-            foreach ($times as $time): ?>
-                <tr>
+            foreach ($times as $time):
+                $timeJson = getTimeJson($time); ?>
+                <tr class="tr-table time-tr-table" data-group="<?= $timeJson; ?>">
                     <td><?= formatDate($time['start_at']); ?></td>
                     <td><?= formatDate($time['end_at']); ?></td>
                     <td><?= $time['duration']; ?></td>
                     <td><?= $time['description']; ?></td>
+                    <td>
+                        <button id="btn-detail" class="btn btn-detail btn-info" type="button"
+                                title="Open Group Detail">
+                            <i class="fas fa-info"></i>
+                            <span>Open Detail</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="btn-update" class="btn btn-update btn-primary" type="button"
+                                title="Update Group">
+                            <i class="fas fa-edit"></i>
+                            <span>Update</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button id="btn-delete" class="btn btn-delete btn-danger" type="button"
+                                title="Delete Group">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Delete</span>
+                        </button>
+                    </td>
                 </tr>
             <?php
             endforeach ?>

@@ -1,4 +1,4 @@
-<form id="time-form" action="./php/time.php" method="POST">
+<form id="form" action="./php/time.php" method="POST">
     <div class="modal-header">
         <h3>Time Form</h3>
         <span class="close">X</span>
