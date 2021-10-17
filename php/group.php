@@ -18,8 +18,6 @@ if (isset($_POST['submit'])) {
             break;
     }
     redirect('/index.php?page=groups');
-} else {
-    // get group data by id
 }
 
 /**
