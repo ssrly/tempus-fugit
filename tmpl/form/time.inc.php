@@ -24,6 +24,6 @@
     </div>
     <div class="form-group">
         <input id="time-form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
-        <input id="form-submit" class="btn btn-success" type="submit" name="Submit" value="Submit">
+        <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">
     </div>
 </form>
