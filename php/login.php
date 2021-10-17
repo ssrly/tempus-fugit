@@ -4,8 +4,8 @@ session_start();
 require_once 'dbConnection.php';
 require_once 'functions.php';
 
-$mail = prepareInput($_POST['mail']);
-$pwd = prepareInput($_POST['pwd']);
+$mail = convertString($_POST['mail']);
+$pwd = convertString($_POST['pwd']);
 //----------------------------------
 
 if ($_SESSION['code'] !== $_POST['cap']) {

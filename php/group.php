@@ -6,15 +6,15 @@ require_once 'functions.php';
 /** @var $dbCon ./dbConnection.php */
 
 if (isset($_POST['submit'])) {
-    switch (prepareInput($_POST['do'])) {
+    switch (convertString($_POST['do'])) {
         case 'create':
             createGroup($dbCon);
             break;
         case 'update' :
-            updateGroup($dbCon, prepareInput($_POST['id']));
+            updateGroup($dbCon, convertString($_POST['id']));
             break;
         case 'delete' :
-            deleteGroup($dbCon, prepareInput($_POST['id']));
+            deleteGroup($dbCon, convertString($_POST['id']));
             break;
     }
     redirect('/index.php?page=groups');
@@ -37,7 +37,7 @@ function getGroupJson(array $group): string
         'updatedAt' => formatDate($group['updated_at'] ?? ''),
     ]);
 
-    return prepareInput($json);
+    return convertString($json);
 }
 
 /**
@@ -46,8 +46,8 @@ function getGroupJson(array $group): string
 function getGroupFormData(): array
 {
     return [
-        'name' => prepareInput($_POST['name']),
-        'description' => prepareInput($_POST['description']),
+        'name' => convertString($_POST['name']),
+        'description' => convertString($_POST['description']),
         'isAdmin' => !empty($_POST['is_admin']) ? 1 : 0
     ];
 }

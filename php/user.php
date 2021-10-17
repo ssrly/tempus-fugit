@@ -4,11 +4,11 @@ session_start();
 require_once 'dbConnection.php';
 require_once 'functions.php';
 
-$name = prepareInput($_POST['name']);
-$firstName = prepareInput($_POST['firstname']);
-$description = prepareInput($_POST['description']);
-$mail = prepareInput($_POST['mail']);
-$userNumber = prepareInput($_POST['usernumber']);
+$name = convertString($_POST['name']);
+$firstName = convertString($_POST['firstname']);
+$description = convertString($_POST['description']);
+$mail = convertString($_POST['mail']);
+$userNumber = convertString($_POST['usernumber']);
 $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
 $sql = 'SELECT * FROM users WHERE mail = ?';

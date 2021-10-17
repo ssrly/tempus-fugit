@@ -15,7 +15,7 @@ function formatDate(string $dbDate, string $format = '%d.%m.%Y %H:%M'): string
  * @param string $encoding
  * @return string
  */
-function prepareInput(string $userInput, string $encoding = 'UTF-8'): string
+function convertString(string $userInput, string $encoding = 'UTF-8'): string
 {
     return htmlspecialchars(strip_tags(trim($userInput)), ENT_QUOTES | ENT_HTML5, $encoding);
 }
