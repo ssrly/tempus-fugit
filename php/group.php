@@ -23,9 +23,27 @@ if (isset($_POST['submit'])) {
 }
 
 /**
+ * @param array $group
+ * @return string (JSON)
+ */
+function getGroupJson(array $group): string
+{
+    $json = json_encode([
+        'groupId' => $group['id'],
+        'name' => $group['name'],
+        'description' => $group['description'],
+        'isAdmin' => $group['is_admin'],
+        'createdAt' => formatDate($group['created_at'] ?? ''),
+        'updatedAt' => formatDate($group['updated_at'] ?? ''),
+    ]);
+
+    return prepareInput($json);
+}
+
+/**
  * @return array
  */
-function getGroupData(): array
+function getGroupFormData(): array
 {
     return [
         'name' => prepareInput($_POST['name']),
@@ -42,7 +60,7 @@ function createGroup(PDO $dbCon)
     $sql = 'INSERT INTO `groups`(name,description,is_admin,created_at) 
             VALUES(?,?,?,NOW())';
     $statement = $dbCon->prepare($sql);
-    $values = getGroupData();
+    $values = getGroupFormData();
     $statement->execute([$values['name'], $values['description'], $values['isAdmin']]);
 }
 
@@ -55,7 +73,7 @@ function updateGroup(PDO $dbCon, int $id)
     $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, created_at = NOW()
             WHERE id = ?';
     $statement = $dbCon->prepare($sql);
-    $values = getGroupData();
+    $values = getGroupFormData();
     $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
 }
 

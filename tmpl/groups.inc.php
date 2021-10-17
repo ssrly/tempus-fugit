@@ -33,16 +33,8 @@ $groups = getAllGroups($dbCon);
             <tbody>
             <?php
             foreach ($groups as $group):
-                $groupJson = prepareInput(
-                    json_encode([
-                        'groupId' => $group['id'],
-                        'name' => $group['name'],
-                        'description' => $group['description'],
-                        'isAdmin' => $group['is_admin'],
-                        'createdAt' => formatDate($group['created_at'] ?? ''),
-                        'updatedAt' => formatDate($group['updated_at'] ?? ''),
-                    ])
-                ); ?>
+                $groupJson = getGroupJson($group);
+                ?>
                 <tr class="group-tr group-tr-table" data-group="<?= $groupJson; ?>">
                     <td><?= $group['name']; ?></td>
                     <td><?= $group['description']; ?></td>
