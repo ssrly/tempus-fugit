@@ -7,7 +7,7 @@
  */
 function formatDate(string $dbDate, string $format = '%d.%m.%Y %H:%M'): string
 {
-    return utf8_encode(strftime($format, strtotime($dbDate)));
+    return !empty($dbDate) ? utf8_encode(strftime($format, strtotime($dbDate))) : 'no record';
 }
 
 /**

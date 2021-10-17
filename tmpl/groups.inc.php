@@ -4,7 +4,6 @@ require_once './php/group.php';
 /** @var $dbCon ./../php/dbConnection.php */
 $groups = getAllGroups($dbCon);
 ?>
-<script src="./js/group.js"></script>
 
 <div class="container">
     <section class="info-text">
@@ -25,7 +24,7 @@ $groups = getAllGroups($dbCon);
             <tr>
                 <th>Group-Name</th>
                 <th>Description</th>
-                <th>Admin Rights</th>
+                <th>Is-Admin</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -40,8 +39,8 @@ $groups = getAllGroups($dbCon);
                         'name' => $group['name'],
                         'description' => $group['description'],
                         'isAdmin' => $group['is_admin'],
-                        'createdAt' => $group['created_at'],
-                        'updatedAt' => $group['updated_at'] ?? '',
+                        'createdAt' => formatDate($group['created_at'] ?? ''),
+                        'updatedAt' => formatDate($group['updated_at'] ?? ''),
                     ])
                 ); ?>
                 <tr class="group-tr group-tr-table" data-group="<?= $groupJson; ?>">
