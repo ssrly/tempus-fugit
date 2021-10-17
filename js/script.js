@@ -1,6 +1,6 @@
 "use strict";
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 
     console.log('hello world!');
 
