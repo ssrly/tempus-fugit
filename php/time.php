@@ -11,28 +11,32 @@ if (isset($_POST['submit'])) {
             createTime($dbCon);
             break;
         case 'update' :
-            updateTime($dbCon, convertString($_POST['id']));
+            updateTime($dbCon, (int)convertString($_POST['id']));
             break;
         case 'delete' :
-            deleteTime($dbCon, convertString($_POST['id']));
+            deleteTime($dbCon, (int)convertString($_POST['id']));
             break;
     }
     redirect('/index.php?page=times');
 }
 
 /**
- * @param array $group
+ * @param array $time
  * @return string (JSON)
  */
 function getTimeJson(array $time): string
 {
     $json = json_encode([
-        'time' => $time['id'],
-        'startAt' => formatDate($time['start_at'] ?? ''),
-        'endAt' => formatDate($time['end_at'] ?? ''),
-        'duration' => $time['duration'],
-        'description' => $time['description'],
-        'userId' => $time['user_id'],
+        'id' => $time['id'] ?? '',
+        'startDate' => getDateString($time['start_at']),
+        'startTime' => getTimeString($time['start_at']),
+        'endDate' => getDateString($time['end_at']),
+        'endTime' => getTimeString($time['end_at']),
+        'duration' => getDurationString($time['duration']),
+        'description' => convertString($time['description']),
+        'userId' => convertString($time['user_id']),
+        //TODO: get username
+        'userName' => convertString('user name'),
         'createdAt' => formatDate($time['created_at'] ?? ''),
         'updatedAt' => formatDate($time['updated_at'] ?? ''),
     ]);
@@ -41,14 +45,75 @@ function getTimeJson(array $time): string
 }
 
 /**
+ * @param string $datetime
+ * @return string
+ */
+function getDateString(string $datetime): string
+{
+    return explode(' ', $datetime)[0];
+}
+
+/**
+ * @param string $datetime
+ * @return string
+ */
+function getTimeString(string $datetime): string
+{
+    return explode(' ', $datetime)[1];
+}
+
+/**
+ * @param string $date
+ * @param string $time
+ * @return string
+ */
+function getFormDatetimeString(string $date, string $time): string
+{
+    if (count(explode(':', $time)) > 2) {
+        $tmp = explode(':', $time);
+        $time = $tmp[0] . ':' . $tmp[1];
+    }
+    $datetime = DateTime::createFromFormat('Y-m-d H:i', $date . ' ' . $time);
+    return $datetime->format('Y-m-d H:i');
+}
+
+/**
+ * @param string $start
+ * @param string $end
+ * @return int
+ */
+function getDurationInSeconds(string $start, string $end): int
+{
+    $start = new DateTime($start);
+    $end = new DateTime($end);
+
+    return $end->getTimestamp() - $start->getTimestamp();
+}
+
+/**
+ * @param int $duration
+ * @return string
+ */
+function getDurationString(int $duration): string
+{
+    return gmdate('H:i:s', $duration);
+}
+
+/**
  * @return array
+ * @throws Exception
  */
 function getTimeFormData(): array
 {
+    $startAt = getFormDatetimeString($_POST['start_date'], $_POST['start_time']);
+    $endAt = getFormDatetimeString($_POST['end_date'], $_POST['end_time']);
+
     return [
-        'name' => convertString($_POST['name']),
+        'startAt' => $startAt,
+        'endAt' => $endAt,
+        'duration' => getDurationInSeconds($startAt, $endAt),
         'description' => convertString($_POST['description']),
-        'isAdmin' => !empty($_POST['is_admin']) ? 1 : 0
+        'userId' => (int)convertString($_POST['user_id'])
     ];
 }
 
@@ -57,7 +122,7 @@ function getTimeFormData(): array
  * @param array|string[] $rowWithValue
  * @return bool
  */
-function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['name' => 'admin']): bool
+function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['start_at' => '']): bool
 {
     foreach ($rowWithValue as $row => $value) {
         $sql = 'SELECT * FROM `times` WHERE ? = ?';
@@ -78,11 +143,13 @@ function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['name' => 'admi
 function createTime(PDO $dbCon)
 {
     $values = getTimeFormData();
-    if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
-        $sql = 'INSERT INTO `times`(name,description,is_admin,created_at)
-            VALUES(?,?,?,NOW())';
+    if (groupRecordCreatable($dbCon, ['start_at' => $values['startAt']])) {
+        $sql = 'INSERT INTO `times`(start_at,end_at,duration,description,user_id,created_at)
+            VALUES(?,?,?,?,?,NOW())';
         $statement = $dbCon->prepare($sql);
-        $statement->execute([$values['name'], $values['description'], $values['isAdmin']]);
+        $statement->execute(
+            [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId']]
+        );
     }
 }
 
@@ -93,11 +160,15 @@ function createTime(PDO $dbCon)
 function updateTime(PDO $dbCon, int $id)
 {
     $values = getTimeFormData();
-    if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
-        $sql = 'UPDATE `times` SET name = ?,description = ?,is_admin = ?, updated_at = NOW()
-            WHERE id = ?';
+    if (groupRecordCreatable($dbCon, ['start_at' => $values['startAt']])) {
+//        die(var_dump($values) . var_dump($id));
+        $sql = 'UPDATE `times` 
+                SET start_at = ?,end_at = ?,duration = ?,description = ?,user_id = ?,updated_at = NOW() 
+                WHERE `id` = ?';
         $statement = $dbCon->prepare($sql);
-        $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
+        $statement->execute(
+            [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId'], $id]
+        );
     }
 }
 

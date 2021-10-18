@@ -35,9 +35,9 @@ $groups = getAllGroups($dbCon);
             <tbody>
             <?php
             foreach ($groups as $group):
-                $groupJson = getGroupJson($group);
+                $dbRecordJson = getGroupJson($group);
                 ?>
-                <tr class="tr-table group-tr-table" data-group="<?= $groupJson; ?>">
+                <tr class="tr-table group-tr-table" data-dbrecord="<?= $dbRecordJson; ?>">
                     <td><?= $group['name']; ?></td>
                     <td><?= $group['description']; ?></td>
                     <td><?= $group['is_admin'] ? 'Yes' : 'No'; ?></td>

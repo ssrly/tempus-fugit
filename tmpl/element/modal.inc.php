@@ -13,7 +13,7 @@
         } ?>
         <div class="modal-detail hidden">
             <div class="modal-header">
-                <h3>Details</h3>
+                <h3 id="modal-headline">Details</h3>
                 <span class="close">X</span>
             </div>
             <div class="modal-body detail-body"></div>

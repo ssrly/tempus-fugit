@@ -39,11 +39,11 @@ $times = getAllTimesByUser($dbCon, 4);
             <tbody>
             <?php
             foreach ($times as $time):
-                $timeJson = getTimeJson($time); ?>
-                <tr class="tr-table time-tr-table" data-group="<?= $timeJson; ?>">
+                $dbRecordJson = getTimeJson($time); ?>
+                <tr class="tr-table time-tr-table" data-dbrecord="<?= $dbRecordJson; ?>">
                     <td><?= formatDate($time['start_at']); ?></td>
                     <td><?= formatDate($time['end_at']); ?></td>
-                    <td><?= $time['duration']; ?></td>
+                    <td><?= getDurationString($time['duration']); ?></td>
                     <td><?= $time['description']; ?></td>
                     <td>
                         <button id="btn-detail" class="btn btn-detail btn-info" type="button"

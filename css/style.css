@@ -10,12 +10,12 @@
     --color-warning: #FFDC00;
     --color-danger: #FF4136;
     /* size */
-    --xxs: 0.3em;
-    --xs: 0.5em;
-    --s: 0.8em;
-    --m: 1em;
-    --l: 1.5em;
-    --xl: 2em;
+    --xxs: 0.3rem;
+    --xs: 0.5rem;
+    --s: 0.8rem;
+    --m: 1rem;
+    --l: 1.5rem;
+    --xl: 2rem;
 }
 
 @font-face {
@@ -54,14 +54,15 @@ header {
 }
 
 footer {
-    position: absolute;
+    display: flex;
+    position: fixed;
     bottom: 0;
     margin-top: auto;
 }
 
 .container {
-    margin-top: var(--s);
-    margin-bottom: var(--xs);
+    /*margin-top: var(--l);*/
+    /*margin-bottom: var(--xl);*/
 }
 
 .navigation {

@@ -11,10 +11,10 @@ if (isset($_POST['submit'])) {
             createGroup($dbCon);
             break;
         case 'update' :
-            updateGroup($dbCon, convertString($_POST['id']));
+            updateGroup($dbCon, (int)convertString($_POST['id']));
             break;
         case 'delete' :
-            deleteGroup($dbCon, convertString($_POST['id']));
+            deleteGroup($dbCon, (int)convertString($_POST['id']));
             break;
     }
     redirect('/index.php?page=groups');
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 function getGroupJson(array $group): string
 {
     $json = json_encode([
-        'groupId' => $group['id'],
+        'id' => $group['id'],
         'name' => $group['name'],
         'description' => $group['description'],
         'isAdmin' => $group['is_admin'],
@@ -92,8 +92,9 @@ function updateGroup(PDO $dbCon, int $id)
 {
     $values = getGroupFormData();
     if (groupRecordCreatable($dbCon, ['name' => $values['name']])) {
-        $sql = 'UPDATE `groups` SET name = ?,description = ?,is_admin = ?, updated_at = NOW()
-            WHERE id = ?';
+        $sql = 'UPDATE `groups` 
+                SET name = ?,description = ?,is_admin = ?, updated_at = NOW()
+                WHERE id = ?';
         $statement = $dbCon->prepare($sql);
         $statement->execute([$values['name'], $values['description'], $values['isAdmin'], $id]);
     }
