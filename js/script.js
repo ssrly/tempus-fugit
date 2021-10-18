@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
     let groupData = $(this).parent().parent().data().group;
     $('#form-name').val(groupData.name);
     $('#form-description').val(groupData.description);
-    $('#form-isadmin').prop('checked', groupData.isAdmin === '1');
+    $('#form-is-admin').prop('checked', groupData.isAdmin === '1');
     $('#form-id').val(groupData.groupId);
     $('#form-do').val('update');
   });

@@ -58,9 +58,9 @@ function getGroupFormData(): array
 function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['name' => 'admin']): bool
 {
     foreach ($rowWithValue as $row => $value) {
-        $sql = 'SELECT * FROM `groups` WHERE ? = ?';
+        $sql = "SELECT * FROM `groups` WHERE $row = $value";
         $statement = $dbCon->prepare($sql);
-        $statement->execute([$row, $value]);
+        $statement->execute();
         if ($statement->fetch()) {
             $_SESSION['msg'] = 'A record "' . $value . '" already exists.';
             return false;

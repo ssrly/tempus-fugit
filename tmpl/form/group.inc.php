@@ -14,8 +14,8 @@
             <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="form-isadmin">Has admin rights</label>
-            <input id="form-isadmin" class="form-text-input required" type="checkbox" name="is_admin">
+            <label for="form-is-admin">Has admin rights</label>
+            <input id="form-is-admin" class="form-text-input required" type="checkbox" name="is_admin">
         </div>
         <div class="form-group">
             <p id="form-required-info">Required</p>
