@@ -1,4 +1,4 @@
-<form id="form" action="./php/group.php" method="POST" class="modal-form hidden">
+<form id="form group-form" action="./php/group.php" method="POST" class="modal-form hidden">
     <div class="modal-header">
         <h3>Group Form</h3>
         <span class="close">X</span>

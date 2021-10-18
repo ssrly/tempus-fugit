@@ -1,7 +1,6 @@
 'use strict';
 
 jQuery(document).ready(function() {
-
   $('#btn-create').click(function() {
     $('#form').removeClass('hidden');
   });
@@ -49,6 +48,37 @@ jQuery(document).ready(function() {
     //TODO: validation
   });
 
+  $(this).find('input[type="date"]').each(function() {
+    $(this).val(getDateFormat());
+  });
+
+  $(this).find('input[type="time"]').each(function() {
+    $(this).val(getTimeFormat());
+  });
+
+  /**
+   * @returns {string}
+   */
+  function getDateFormat() {
+    let now = new Date();
+    let month = ('0' + (now.getMonth() + 1)).slice(-2);
+    let day = ('0' + now.getDate()).slice(-2);
+
+    return `${now.getFullYear()}-${month}-${day}`;
+  }
+
+  /**
+   * @param {Date} time
+   * @returns {string}
+   */
+  function getTimeFormat(time) {
+    let now = new Date();
+    let hours = ('0' + now.getHours()).slice(-2);
+    let minutes = ('0' + now.getMinutes()).slice(-2);
+
+    return `${hours}:${minutes}`;
+  }
+
   function getHeadline(text, tag = 'h4') {
     return $(document.createElement(tag)).text(text);
   }
@@ -57,4 +87,5 @@ jQuery(document).ready(function() {
     return $(document.createElement('p')).text(text);
   }
 
-});
+})
+;

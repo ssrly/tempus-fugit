@@ -1,4 +1,4 @@
-<form id="login-form" action="./php/login.php" method="POST">
+<form id="form login-form" action="./php/login.php" method="POST">
     <div class="modal-header">
         <h3>Login Form</h3>
         <span class="close">X</span>
