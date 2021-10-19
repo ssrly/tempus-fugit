@@ -9,6 +9,7 @@ $tmpl = './tmpl/error.inc.php';
 
 //TODO: set dynamic
 $_SESSION['user_id'] = 4;
+$_SESSION['is_admin'] = true;
 
 if (isset($_SESSION['msg'])) {
     $msg = $_SESSION['msg'];
@@ -25,9 +26,6 @@ switch ($page) {
         break;
     case 'times':
         $tmpl = './tmpl/times.inc.php';
-        break;
-    case 'groups':
-        $tmpl = './tmpl/groups.inc.php';
         break;
     case 'impressum':
         $tmpl = './tmpl/impressum.inc.php';

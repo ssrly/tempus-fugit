@@ -18,12 +18,6 @@
                 <i class="fa fa-solid fa-user"></i>
             </a>
         </li>
-        <li class="<?= $page === 'groups' ? 'active' : ''; ?>">
-            <a href="index.php?page=groups">
-                <span class="link-name">Groups</span>
-                <i class="fas fa-user-friends"></i>
-            </a>
-        </li>
         <li class="<?= $page === 'docu' ? 'active' : ''; ?>">
             <a href="index.php?page=docu">
                 <span class="link-name">Docu</span>
