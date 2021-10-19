@@ -13,20 +13,12 @@ jQuery(document).ready(function() {
   $('.btn-update').click(function() {
         let form = $('form');
         let dbData = $(this).parent().parent().data().dbrecord;
-        console.log(dbData);
         form.removeClass('hidden');
 
-        if (form.is('#group-form')) {
-          $('#form-name').val(dbData.name);
-          $('#form-description').val(dbData.description);
-          $('#form-is-admin').prop('checked', dbData.isAdmin === '1');
-        } else if (form.is('#time-form')) {
-          $('#form-start-date').val(dbData.startDate);
-          $('#form-start-time').val(dbData.startTime);
-          $('#form-end-date').val(dbData.endDate);
-          $('#form-end-time').val(dbData.endTime);
-          $('#form-description').val(dbData.description);
-          $('#form-user-id').val(dbData.userId);
+        if (form.is('#time-form')) {
+          setTimeFormFields(dbData);
+        } else if (form.is('#user-form')) {
+          setUserFormFields(dbData);
         }
 
         $('#form-id').val(dbData.id);
@@ -36,47 +28,29 @@ jQuery(document).ready(function() {
 
   $('.btn-delete').click(function() {
     let dbData = $(this).parent().parent().data().dbrecord;
+    $('input').each(function() {
+      $(this).prop('required', false);
+    });
     $('#form-id').val(dbData.id);
     $('#form-do').val('delete');
-    $('#form-name').prop('required', false);
     $('#form-submit').click();
   });
 
 //TODO: refactor
   $('.btn-detail').click(function() {
     $('.modal-detail').removeClass('hidden');
+    let dbData = $(this).parent().parent().data().dbrecord;
     let form = $('form');
     let body = $('.detail-body');
-    let dbData = $(this).parent().parent().data().dbrecord;
     body.empty();
-    if (form.is('#group-form')) {
-      $('#modal-headline').text(`Details ${dbData.name}:`);
-      body.append(getHeadline('Description:'));
-      body.append(getParagraph(dbData.description));
-      body.append(getHeadline('Has Amin Rights:'));
-      body.append(getParagraph((dbData.isAdmin === '1' ? 'Yes' : 'No')));
-      body.append(getHeadline('Created at:'));
-      body.append(getParagraph(dbData.createdAt));
-      body.append(getHeadline('Updated at:'));
-      body.append(getParagraph(dbData.updatedAt));
-    } else if (form.is('#time-form')) {
-      $('#modal-headline').text('Details Time Record:');
-      body.append(getHeadline('Start at:'));
-      body.append(getParagraph(`${dbData.startDate} ${dbData.startTime}`));
-      body.append(getHeadline('End at:'));
-      body.append(getParagraph(`${dbData.dataRecord} ${dbData.endTime}`));
-      body.append(getHeadline('Duration:'));
-      body.append(getParagraph(dbData.duration));
-      body.append(getHeadline('Description:'));
-      body.append(getParagraph(dbData.description));
-      body.append(getHeadline('Created at:'));
-      body.append(getParagraph(dbData.createdAt));
-      body.append(getHeadline('Updated at:'));
-      body.append(getParagraph(dbData.updatedAt));
-      body.append(getHeadline('Last Update by:'));
-      body.append(getParagraph(dbData.userName));
 
-    } else if (form.is('#user-form')) {}
+    if (form.is('#time-form')) {
+      setTimeDetail(body, dbData);
+    } else if (form.is('#user-form')) {
+      setUserDetail(body, dbData);
+    }
+    setDetail(body, dbData);
+
     $('#form-id').val(dbData.id);
   });
 
@@ -87,6 +61,71 @@ jQuery(document).ready(function() {
   $('form').submit(function() {
     //TODO: validation
   });
+
+  /**
+   * @param {HTMLElement} body
+   * @param {JSON} data
+   */
+  function setDetail(body, data) {
+    body.append(getHeadline('Description:'));
+    body.append(getParagraph(data.description));
+    body.append(getHeadline('Created at:'));
+    body.append(getParagraph(data.createdAt));
+    body.append(getHeadline('Updated at:'));
+    body.append(getParagraph(data.updatedAt));
+  }
+
+  /**
+   * @param {HTMLElement} body
+   * @param {JSON} data
+   */
+  function setTimeDetail(body, data) {
+    $('#modal-headline').text('Details Time Record:');
+    body.append(getHeadline('Start at:'));
+    body.append(getParagraph(`${data.startDate} ${data.startTime}`));
+    body.append(getHeadline('End at:'));
+    body.append(getParagraph(`${data.endDate} ${data.endTime}`));
+    body.append(getHeadline('Duration:'));
+    body.append(getParagraph(data.duration));
+  }
+
+  /**
+   * @param {HTMLElement} body
+   * @param {JSON} data
+   */
+  function setUserDetail(body, data) {
+    $('#modal-headline').text(`Details ${data.firstname} ${data.name}:`);
+    body.append(getHeadline('Email:'));
+    body.append(getParagraph(data.email));
+    body.append(getHeadline('User Number:'));
+    body.append(getParagraph(data.userNumber));
+    body.append(getHeadline('Has Amin Rights:'));
+    body.append(getParagraph((data.isAdmin === '1' ? 'Yes' : 'No')));
+  }
+
+  /**
+   * @param {JSON} data
+   */
+  function setTimeFormFields(data) {
+    $('#form-start-date').val(data.startDate);
+    $('#form-start-time').val(data.startTime);
+    $('#form-end-date').val(data.endDate);
+    $('#form-end-time').val(data.endTime);
+    $('#form-description').val(data.description);
+    $('#form-user-id').val(data.userId);
+  }
+
+  /**
+   * @param {JSON} data
+   */
+  function setUserFormFields(data) {
+    $('#form-name').val(data.name);
+    $('#form-firstname').val(data.firstname);
+    $('#form-description').val(data.description);
+    $('#form-email').val(data.email);
+    $('#form-user-number').val(data.userNumber);
+    $('#form-is-admin').prop('checked', data.isAdmin === '1');
+  }
 
   /** sets form fields to default **/
   function defaultInputs() {
@@ -124,10 +163,19 @@ jQuery(document).ready(function() {
     return `${hours}:${minutes}`;
   }
 
+  /**
+   * @param {string} text
+   * @param {string} tag
+   * @returns {*|jQuery}
+   */
   function getHeadline(text, tag = 'h4') {
     return $(document.createElement(tag)).text(text);
   }
 
+  /**
+   * @param {string} text
+   * @returns {*|jQuery}
+   */
   function getParagraph(text) {
     return $(document.createElement('p')).text(text);
   }
