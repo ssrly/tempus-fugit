@@ -3,7 +3,7 @@
 require_once './php/time.php';
 
 /** @var $dbCon ./../php/dbConnection.php */
-$uid = $_GET['uid'] ?? $_SESSION['user_id'];
+$uid = (isset($_GET['uid']) && $_SESSION['is_admin']) ? $_GET['uid'] : $_SESSION['user_id'];
 $times = getAllTimesByUser($dbCon, $uid);
 ?>
 

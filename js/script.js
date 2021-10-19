@@ -36,7 +36,6 @@ jQuery(document).ready(function() {
     $('#form-submit').click();
   });
 
-//TODO: refactor
   $('.btn-detail').click(function() {
     $('.modal-detail').removeClass('hidden');
     let dbData = $(this).parent().parent().data().dbrecord;
@@ -52,6 +51,10 @@ jQuery(document).ready(function() {
     setDetail(body, dbData);
 
     $('#form-id').val(dbData.id);
+  });
+
+  $('.btn-time').click(function() {
+    redirect('times', $(this).data().uid);
   });
 
   $('.close').click(function() {
@@ -138,6 +141,17 @@ jQuery(document).ready(function() {
     $('input[type="time"]').each(function() {
       $(this).val(getTimeFormat());
     });
+  }
+
+  /**
+   * @param {string} page
+   * @param {string} uid
+   */
+  function redirect(page, uid = '') {
+    let root = window.location.href;
+    root = root.substr(0, root.indexOf('?page='));
+    page = `${root}?page=${page}&uid=${uid}`;
+    window.location.replace(page);
   }
 
   /**
