@@ -145,9 +145,9 @@ function deleteUser(PDO $dbCon, int $id)
  */
 function getUser(PDO $dbCon, int $id): array
 {
-    $sql = 'SELECT * FROM `users` WHERE id = ?';
+    $sql = "SELECT * FROM `users` WHERE id = $id";
     $statement = $dbCon->query($sql);
-    $statement->execute([$id]);
+    $statement->execute();
 
     return $statement->fetch();
 }

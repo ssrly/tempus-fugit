@@ -1,10 +1,10 @@
 'use strict';
 
 jQuery(document).ready(function() {
-  defaultInputs();
+  setDefaultInputs();
 
   $('#btn-create').click(function() {
-    defaultInputs();
+    setDefaultInputs();
     $('form').removeClass('hidden');
     $('#form-do').val('create');
   });
@@ -53,6 +53,15 @@ jQuery(document).ready(function() {
     $('#form-id').val(dbData.id);
   });
 
+  $('.btn-register').click(function() {
+    redirect('registration');
+  });
+
+  $('.login-out').click(function(event) {
+    event.preventDefault();
+    $('#login-form').toggleClass('hidden');
+  });
+
   $('.btn-time').click(function() {
     redirect('times', $(this).data().uid);
   });
@@ -61,8 +70,15 @@ jQuery(document).ready(function() {
     $(this).parent().parent().addClass('hidden');
   });
 
-  $('form').submit(function() {
-    //TODO: validation
+  if ($('.container').is('#registration-container')) {
+    $('#user-form').toggleClass('hidden');
+  }
+
+  //TODO: validate
+  $('form').submit(function(event) {
+    // event.preventDefault();
+    // if (form.is('#time-form')) {    validateUserForm($(this));}
+    // else if (form.is('#time-form')) {    validateTimeForm($(this));}
   });
 
   /**
@@ -131,7 +147,7 @@ jQuery(document).ready(function() {
   }
 
   /** sets form fields to default **/
-  function defaultInputs() {
+  function setDefaultInputs() {
     $('#form-reset').click();
 
     $('input[type="date"]').each(function() {
@@ -150,7 +166,10 @@ jQuery(document).ready(function() {
   function redirect(page, uid = '') {
     let root = window.location.href;
     root = root.substr(0, root.indexOf('?page='));
-    page = `${root}?page=${page}&uid=${uid}`;
+    page = `${root}?page=${page}`;
+    if (uid) {
+      page = `${page}&uid=${uid}`;
+    }
     window.location.replace(page);
   }
 
@@ -192,6 +211,71 @@ jQuery(document).ready(function() {
    */
   function getParagraph(text) {
     return $(document.createElement('p')).text(text);
+  }
+
+  $.validator.addMethod('nameFormat', function(value) {
+    return value.match(/^[a-z\s\-\.]*$/i);
+  });
+
+  $.validator.addMethod('mailFormat', function(value) {
+    return value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/);
+  });
+
+  $.validator.addMethod('userNumberFormat', function(value) {
+    return value.match(/^[0-9a-z\s\-\.]*$/i);
+  });
+
+  $.validator.addMethod('pwdFormat', function(value) {
+    return value.match(/^[0-9a-z\s\-\.]*$/i);
+  });
+
+  function validateUserForm(form) {
+    form.validate({
+      rules: {
+        name: {
+          required: true,
+          nameFormat: true,
+        },
+        firstname: {
+          required: true,
+          nameFormat: true,
+        },
+        email: {
+          required: true,
+          mailFormat: true,
+        },
+        pwd: {
+          required: true,
+          pwdFormat: true,
+        },
+        pwd_repeat: {
+          required: true,
+          equalTo: '#form-pwd-repeat',
+        },
+      },
+      messages: {
+        name: {
+          required: 'Bitte Nachname eingeben',
+          nameFormat: 'Nur Buchstaben, Leerzeichen, - und . sind erlaubt',
+        },
+        firstname: {
+          required: 'Bitte Vorname eingeben',
+          firstNameFormat: 'Nur Buchstaben, Leerzeichen, - und . sind erlaubt',
+        },
+        email: {
+          required: 'Bitte E-Mail eingeben',
+          mailFormat: '@-Zeichen muss vorhanden sein',
+        },
+        pwd: {
+          required: 'Bitte Passwort eingeben',
+          rangelength: '6 bis 12 Zeichen werden benoetigt',
+        },
+        pwd_repeat: {
+          required: 'Bitte Passwort wiederholen',
+          equalTo: 'Passwörter stimmen nicht überein',
+        },
+      },
+    });
   }
 
 });

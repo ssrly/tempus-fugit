@@ -35,8 +35,6 @@ function getTimeJson(array $time): string
         'duration' => getDurationString($time['duration']),
         'description' => convertString($time['description']),
         'userId' => convertString($time['user_id']),
-        //TODO: get username
-        'userName' => convertString('user name'),
         'createdAt' => formatDate($time['created_at'] ?? ''),
         'updatedAt' => formatDate($time['updated_at'] ?? ''),
     ]);

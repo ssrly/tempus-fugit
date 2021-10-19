@@ -1,4 +1,4 @@
-<form id="login-form" action="./php/login.php" method="POST">
+<form id="login-form" action="./php/login.php" method="POST" class="hidden">
     <div class="modal-header">
         <h3>Login Form</h3>
         <span class="close">X</span>
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['token'] ?>"/>
-        <input id="form-register" class="btn btn-default" type="submit" name="register" value="Register">
+        <input id="form-register" class="btn btn-register btn-default" type="submit" name="register" value="Register">
         <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
         <input id="form-login" class="btn btn-success" type="submit" name="login" value="Login">
     </div>

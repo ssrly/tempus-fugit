@@ -2,7 +2,7 @@
     <div class="modal-content">
         <?php
         /** @var $page ./../../index.php */
-        if ($page === 'users' || $page === 'settings') {
+        if ($page === 'users' || $page === 'settings' || $page === 'registration') {
             include_once './tmpl/form/user.inc.php';
         } elseif ($page === 'times') {
             include_once './tmpl/form/time.inc.php';

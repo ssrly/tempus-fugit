@@ -1,25 +1,23 @@
-<form id="user-form" action="./php/user.php" method="POST">
+<form id="user-form" action="./php/user.php" method="POST" class="hidden">
     <div class="modal-header">
         <h3>User Form</h3>
         <span class="close">X</span>
     </div>
     <div class="form-group">
         <label for="form-name"></label>
-        <input id="form-name" class="form-text-input required" type="text" name="name" placeholder="Your Lastname"
-               required>
+        <input id="form-name" class="form-text-input required" type="text" name="name" placeholder="Your Lastname">
         <label for="form-firstname"></label>
         <input id="form-firstname" class="form-text-input required" type="text" name="firstname"
-               placeholder="Your Firstname" required>
+               placeholder="Your Firstname">
     </div>
     <div class="form-group">
         <label for="form-user-number"></label>
         <input id="form-user-number" class="form-text-input required" type="text" name="user_number"
-               placeholder="Your User Number" required>
+               placeholder="Your User Number">
     </div>
     <div class="form-group">
         <label for="form-email"></label>
-        <input id="form-email" class="form-mail-input required" type="email" name="email" placeholder="Your E-Mail"
-               required>
+        <input id="form-email" class="form-mail-input required" type="email" name="email" placeholder="Your E-Mail">
     </div>
     <div class="form-group">
         <label for="form-pwd"></label>

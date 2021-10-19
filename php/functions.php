@@ -31,20 +31,34 @@ function redirect(string $url = '/')
 }
 
 /**
- * @param string $mail
  * @param string $id
  */
-function login(string $mail, string $id)
+function login(string $id)
 {
-    $_SESSION['mail'] = $mail;
+    //TODO: check if admin
+    $_SESSION['logged_in'] = true;
     $_SESSION['user_id'] = $id;
 }
 
 /**
- *
+ * @return bool
  */
+function isLoggedIn(): bool
+{
+    return $_SESSION['logged_in'] ?? false;
+}
+
+/**
+ * @return bool
+ */
+function isAdmin(): bool
+{
+    return $_SESSION['is_admin'] ?? false;
+}
+
+/** unsets SESSION vars */
 function logout()
 {
-    unset($_SESSION['mail']);
+    unset($_SESSION['logged_in']);
     unset($_SESSION['user_id']);
 }
