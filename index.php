@@ -30,7 +30,7 @@ switch ($page) {
     case 'impressum':
         $tmpl = './tmpl/impressum.inc.php';
         break;
-    case 'setup':
+    case 'settings':
         $tmpl = './tmpl/settings.inc.php';
         break;
     case 'docu':
