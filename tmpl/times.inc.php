@@ -1,8 +1,10 @@
 <?php
 
 require_once './php/time.php';
+
 /** @var $dbCon ./../php/dbConnection.php */
-$times = getAllTimesByUser($dbCon, 4);
+$uid = $_GET['uid'] ?? $_SESSION['user_id'];
+$times = getAllTimesByUser($dbCon, $uid);
 ?>
 
 <div class="container">
@@ -46,21 +48,21 @@ $times = getAllTimesByUser($dbCon, 4);
                     <td><?= getDurationString($time['duration']); ?></td>
                     <td><?= $time['description']; ?></td>
                     <td>
-                        <button id="btn-detail" class="btn btn-detail btn-info" type="button"
+                        <button class="btn btn-detail btn-info" type="button"
                                 title="Open Group Detail">
                             <i class="fas fa-info"></i>
                             <span>Open Detail</span>
                         </button>
                     </td>
                     <td>
-                        <button id="btn-update" class="btn btn-update btn-primary" type="button"
+                        <button class="btn btn-update btn-primary" type="button"
                                 title="Update Group">
                             <i class="fas fa-edit"></i>
                             <span>Update</span>
                         </button>
                     </td>
                     <td>
-                        <button id="btn-delete" class="btn btn-delete btn-danger" type="button"
+                        <button class="btn btn-delete btn-danger" type="button"
                                 title="Delete Group">
                             <i class="fas fa-trash-alt"></i>
                             <span>Delete</span>
