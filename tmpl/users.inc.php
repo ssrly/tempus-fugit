@@ -1,26 +1,9 @@
 <?php
 
-$sql = "SELECT u.*, g.name AS group_names FROM users u
-            JOIN user_group ON u.id = user_group.user_id
-            JOIN groups g   ON user_group.group_id = g.id";
+require_once './php/user.php';
+/** @var $dbCon ./../php/dbConnection.php */
+$users = getAllUsers($dbCon);
 
-/** @var $dbCon ./../dbConnection.php */
-$statement = $dbCon->query($sql);
-$users = $statement->fetchAll();
-$count = $statement->rowCount();
-
-for ($i = 0; $i < $count; $i++) {
-    for ($j = 0; $j < $count; $j++) {
-        $hasGroup = !is_bool(strpos($users[$i]['group_names'], $users[$j]['group_names']));
-        if ($users[$i]['id'] === $users[$j]['id'] && !$hasGroup) {
-            $users[$i]['group_names'] .= ', ' . $users[$j]['group_names'];
-            array_splice($users, $j);
-            $count--;
-        }
-    }
-}
-
-// debugIterations($users);
 ?>
 
 <div class="container">
@@ -32,32 +15,64 @@ for ($i = 0; $i < $count; $i++) {
     </section>
 
     <section>
-        <button id="btn-add-user" class="btn btn-success">
-            Add User
+        <button id="btn-create" class="btn btn-create btn-success" type="button" title="Create New Group">
+            <i class="fas fa-plus"></i>
+            <span>Add User</span>
         </button>
+    </section>
+
+    <section>
         <table>
             <thead>
             <tr>
                 <th>Name</th>
                 <th>Firstname</th>
-                <th>Mail</th>
+                <th>E-Mail</th>
                 <th>User-Number</th>
-                <th>Groups</th>
-                <th>Created</th>
-                <th>Updated</th>
+                <th>Is Admin</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <?php
-            foreach ($users as $user): ?>
-                <tr>
+            foreach ($users as $user):
+                $dbRecordJson = getUserJson($user); ?>
+                <tr class="tr-table time-tr-table" data-dbrecord="<?= $dbRecordJson; ?>">
                     <td><?= $user['name']; ?></td>
                     <td><?= $user['firstname']; ?></td>
-                    <td><?= $user['mail']; ?></td>
+                    <td><?= $user['email']; ?></td>
                     <td><?= $user['user_number']; ?></td>
-                    <td><?= $user['group_names']; ?></td>
-                    <td><?= formatDate($user['created_at']); ?></td>
-                    <td><?= formatDate($user['updated_at']); ?></td>
+                    <td><?= $user['is_admin'] ? 'Yes' : 'No'; ?></td>
+                    <td>
+                        <button class="btn btn-time btn-info" type="button" title="Open Group Detail">
+                            <i class="fa fa-solid fa-stopwatch"></i>
+                            <span>Open Times</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-detail btn-info" type="button"
+                                title="Open Group Detail">
+                            <i class="fas fa-info"></i>
+                            <span>Open Detail</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-update btn-primary" type="button"
+                                title="Update Group">
+                            <i class="fas fa-edit"></i>
+                            <span>Update</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-delete btn-danger" type="button"
+                                title="Delete Group">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Delete</span>
+                        </button>
+                    </td>
                 </tr>
             <?php
             endforeach ?>

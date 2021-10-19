@@ -12,8 +12,8 @@
                placeholder="Your Firstname" required>
     </div>
     <div class="form-group">
-        <label for="form-usernumber"></label>
-        <input id="form-usernumber" class="form-text-input required" type="text" name="usernumber"
+        <label for="form-user-number"></label>
+        <input id="form-user-number" class="form-text-input required" type="text" name="user_number"
                placeholder="Your User Number" required>
     </div>
     <div class="form-group">
@@ -23,28 +23,27 @@
     </div>
     <div class="form-group">
         <label for="form-pwd"></label>
-        <input id="form-pwd" class="form-text-input required" type="password" name="pwd"
-               placeholder="Your Password" required>
+        <input id="form-pwd" class="form-text-input required" type="password" name="pwd" placeholder="Your Password">
         <label for="form-pwd-repeat"></label>
-        <input id="form-pwd-repeat" class="form-text-input required" type="password" name="pwdrepeat"
-               placeholder="Repeat Your Password" required>
+        <input id="form-pwd-repeat" class="form-text-input required" type="password" name="pwd_repeat"
+               placeholder="Repeat Your Password">
     </div>
     <div class="form-group">
         <label for="form-description">Description</label>
         <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
     </div>
     <div class="form-group">
-        <label for="form-roles">Role(s):</label>
-        <select name="roles" id="form-roles" class="form-multi-select required" multiple required>
-            <option value="2">User</option>
-            <option value="1">Admin</option>
-        </select>
+        <label for="form-is-admin">Has admin rights</label>
+        <input id="form-is-admin" class="form-text-input" type="checkbox" name="is_admin">
     </div>
     <div class="form-group">
         <p id="form-required-info">Required</p>
     </div>
     <div class="form-group">
-        <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
+        <input type="hidden" id="form-do" name="do" value="create">
+        <input type="hidden" id="form-id" name="id" value="">
+        <input type="hidden" id="form-user-id" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+        <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
         <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">
     </div>
 </form>
