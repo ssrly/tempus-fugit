@@ -23,6 +23,14 @@ include_once './tmpl/element/nav.inc.php'; ?>
 <hr>
 <div class="container">
     <?php
+    if (isset($_SESSION['msg'])): ?>
+        <section id="section-msg">
+            <h3><?= $_SESSION['msg'] ?></h3>
+        </section>
+    <?php
+    endif; ?>
+
+    <?php
     /** @var $tmpl ./../index.php */
     include_once $tmpl; ?>
 </div>
