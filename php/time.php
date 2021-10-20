@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
             deleteTime($dbCon, (int)convertString($_POST['id']));
             break;
     }
-    redirect('/index.php?page=times');
+    redirect('/index.php?page=times&uid=' . $_POST['user_id']);
 }
 
 /**

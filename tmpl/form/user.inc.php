@@ -44,7 +44,9 @@
     <div class="form-group">
         <input type="hidden" id="form-do" name="do" value="create">
         <input type="hidden" id="form-id" name="id" value="">
-        <input type="hidden" id="form-user-id" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+        <?php
+        /** @var $uid /tmpl/times.inc.php */ ?>
+        <input type="hidden" id="form-user-id" name="user_id" value="<?= $uid ?>">
         <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
         <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">
     </div>

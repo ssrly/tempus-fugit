@@ -17,8 +17,7 @@ if (isset($_POST['submit'])) {
             deleteUser($dbCon, (int)convertString($_POST['id']));
             break;
     }
-    /** @var $page ./index.php */
-    redirect('/index.php?page=' . $page);
+    redirect('/index.php?page=user');
 }
 
 /**
