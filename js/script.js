@@ -18,7 +18,6 @@ jQuery(document).ready(function() {
     $('#form-do').val('create');
   });
 
-  //TODO: refactor
   $('.btn-update').click(function() {
         let form = $('form');
         let dbData = $(this).parent().parent().data().dbrecord;
@@ -183,7 +182,8 @@ jQuery(document).ready(function() {
   /** sets Login to Logout **/
   function setLogoutLink() {
     let loginOut = $('.login-out');
-    loginOut.click(function() {
+    loginOut.click(function(event) {
+      event.preventDefault();
       setLogoutForm();
     });
     loginOut.find('span').text('Logout');
