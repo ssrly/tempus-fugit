@@ -6,9 +6,14 @@ WBS Training AG - IEPHPP – PHP Projekt (12.10. - 25.10.2021)
 
 * Agile Project
 * Login / Registration
-* User / Admin groups
 * Timetracking by Users
 * Layout for S, M, L display
+
+## Constraints
+
+* NO OOP
+* NO PHP framework
+* NO CSS framework
 
 ### Dependencies
 
@@ -17,7 +22,7 @@ WBS Training AG - IEPHPP – PHP Projekt (12.10. - 25.10.2021)
 
 ### Installing
 
-* MySQL dump in  ./assets/doc/
+* MySQL dump in ./assets/doc/
 
 ## Author
 

@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) {
             deleteUser($dbCon, (int)convertString($_POST['id']));
             break;
     }
-    redirect('/index.php?page=users');
+    /** @var $page ./index.php */
+    redirect('/index.php?page=' . $page);
 }
 
 /**
@@ -53,7 +54,7 @@ function getUserFormData(): array
         'email' => convertString($_POST['email']),
         'user_number' => convertString($_POST['user_number']),
         'pwd' => password_hash($_POST['pwd'], PASSWORD_DEFAULT),
-        'is_admin' => !empty($_POST['is_admin']) ? 1 : 0
+        'is_admin' => !isset($_POST['is_admin']) || empty($_POST['is_admin']) ? 0 : 1
     ];
 }
 
@@ -83,7 +84,7 @@ function userRecordCreatable(PDO $dbCon, array $rowWithValue = ['email' => '']):
 function createUser(PDO $dbCon)
 {
     $values = getUserFormData();
-    if (userRecordCreatable($dbCon, ['email' => $values['email']])) {
+    if (userRecordCreatable($dbCon, ['email' => $values['email'], 'user_number' => $values['user_number']])) {
         $sql = 'INSERT INTO `users`(name,firstname,description,email,user_number,pwd,is_admin,created_at) 
             VALUES(?,?,?,?,?,?,?,NOW())';
         $statement = $dbCon->prepare($sql);
@@ -109,9 +110,9 @@ function updateUser(PDO $dbCon, int $id)
 {
     //TODO: password function
     $values = getUserFormData();
-    if (userRecordCreatable($dbCon, ['email' => $values['email']])) {
+    if (userRecordCreatable($dbCon, ['email' => $values['email'], 'user_number' => $values['user_number']])) {
         $sql = 'UPDATE `users` 
-                SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,/**pwd = ?,**/is_admin = ?, updated_at = NOW()
+                SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,pwd = ?,is_admin = ?, updated_at = NOW()
                 WHERE id = ?';
         $statement = $dbCon->prepare($sql);
         $statement->execute([
@@ -120,7 +121,7 @@ function updateUser(PDO $dbCon, int $id)
             $values['description'],
             $values['email'],
             $values['user_number'],
-//            $values['pwd'],
+            $values['pwd'],
             $values['is_admin'],
             $id
         ]);

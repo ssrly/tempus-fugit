@@ -1,5 +1,13 @@
 <?php
 
+$devMode = false;
+if ($devMode) {
+//    $_SESSION['user_id'] = 4;
+//    $_SESSION['logged_in'] = true;
+//    $_SESSION['is_admin'] = true;
+    var_dump($_SESSION);
+}
+
 /**
  * @param string $dbDate
  * @param string $format
@@ -32,10 +40,11 @@ function redirect(string $url = '/')
 
 /**
  * @param string $id
+ * @param bool $isAdmin
  */
-function login(string $id)
+function login(string $id, bool $isAdmin)
 {
-    //TODO: check if admin
+    $_SESSION['is_admin'] = $isAdmin;
     $_SESSION['logged_in'] = true;
     $_SESSION['user_id'] = $id;
 }

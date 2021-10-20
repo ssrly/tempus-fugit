@@ -30,10 +30,14 @@
         <label for="form-description">Description</label>
         <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
     </div>
-    <div class="form-group">
-        <label for="form-is-admin">Has admin rights</label>
-        <input id="form-is-admin" class="form-text-input" type="checkbox" name="is_admin">
-    </div>
+    <?php
+    if (isAdmin()): ?>
+        <div class="form-group">
+            <label for="form-is-admin">Has admin rights</label>
+            <input id="form-is-admin" class="form-text-input" type="checkbox" name="is_admin">
+        </div>
+    <?php
+    endif; ?>
     <div class="form-group">
         <p id="form-required-info">Required</p>
     </div>

@@ -17,7 +17,7 @@
         <?php
         endif; ?>
         <?php
-        if (isAdmin()): ?>
+        if (isAdmin()) : ?>
             <li class="<?= $page === 'users' ? 'active' : ''; ?>">
                 <a href="index.php?page=users">
                     <span class="link-name">Users</span>

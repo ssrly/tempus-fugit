@@ -3,6 +3,15 @@
 jQuery(document).ready(function() {
   setDefaultInputs();
 
+  if (!isLoggedIn()) {
+    $('.login-out').click(function(event) {
+      event.preventDefault();
+      $('#login-form').toggleClass('hidden');
+    });
+  } else {
+    setLogoutLink();
+  }
+
   $('#btn-create').click(function() {
     setDefaultInputs();
     $('form').removeClass('hidden');
@@ -49,17 +58,11 @@ jQuery(document).ready(function() {
       setUserDetail(body, dbData);
     }
     setDetail(body, dbData);
-
     $('#form-id').val(dbData.id);
   });
 
   $('.btn-register').click(function() {
     redirect('registration');
-  });
-
-  $('.login-out').click(function(event) {
-    event.preventDefault();
-    $('#login-form').toggleClass('hidden');
   });
 
   $('.btn-time').click(function() {
@@ -77,8 +80,11 @@ jQuery(document).ready(function() {
   //TODO: validate
   $('form').submit(function(event) {
     // event.preventDefault();
-    // if (form.is('#time-form')) {    validateUserForm($(this));}
-    // else if (form.is('#time-form')) {    validateTimeForm($(this));}
+    // if (form.is('#time-form')) {
+    //   validateUserForm($(this));
+    // } else if (form.is('#time-form')) {
+    //   validateTimeForm($(this));
+    // }
   });
 
   /**
@@ -156,6 +162,44 @@ jQuery(document).ready(function() {
 
     $('input[type="time"]').each(function() {
       $(this).val(getTimeFormat());
+    });
+  }
+
+  /**
+   * checks cookies
+   * @returns {boolean}
+   */
+  function isLoggedIn() {
+    let cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+      cookie = cookie.split('=');
+      if (cookie[0] === 'logged_in') {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /** sets Login to Logout **/
+  function setLogoutLink() {
+    let loginOut = $('.login-out');
+    loginOut.click(function() {
+      setLogoutForm();
+    });
+    loginOut.find('span').text('Logout');
+    loginOut.find('i').toggleClass('fa-sign-in-alt');
+    loginOut.find('i').toggleClass('fa-sign-out-alt');
+  }
+
+  /** removes form sets logout form **/
+  function setLogoutForm() {
+    let modalContent = $('.modal-content');
+    modalContent.find('form').remove();
+    $.get({
+      url: './tmpl/form/logout.inc.php',
+      dataType: 'text',
+    }).done(function(data) {
+      modalContent.append(data);
     });
   }
 

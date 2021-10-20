@@ -4,13 +4,17 @@ session_start();
 require_once './php/functions.php';
 require_once './php/dbConnection.php';
 
+if (!isset($_SESSION['token'])) {
+    $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
 $page = $_GET["page"] ?? '';
-
 
 if (isset($_SESSION['msg'])) {
     $msg = $_SESSION['msg'];
     unset($_SESSION['msg']);
 }
+
+setcookie('logged_in', false);
 
 switch ($page) {
     case '':
@@ -31,6 +35,7 @@ switch ($page) {
         break;
 }
 if (isLoggedIn()) {
+    setcookie('logged_in', true);
     switch ($page) {
         case 'times':
             $tmpl = './tmpl/times.inc.php';
