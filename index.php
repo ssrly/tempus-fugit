@@ -7,12 +7,16 @@ require_once './php/dbConnection.php';
 if (!isset($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
-$page = $_GET["page"] ?? '';
 
 if (isset($_SESSION['msg'])) {
+    // Meldung in einer Variablen ablegen (wird über dem Loginformular angezeigt)
     $msg = $_SESSION['msg'];
+    // Meldung aus der Session löschen, da diese nur 1x angezeigt werden soll
+    //flush messages
     unset($_SESSION['msg']);
 }
+
+$page = $_GET["page"] ?? '';
 
 setcookie('logged_in', false);
 

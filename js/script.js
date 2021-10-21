@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
               setUserFormFields(dbData);
             }
 
-            // $('#form-id').val(dbData.id);
+            $('#form-id').val(dbData.id);
             $('#form-do').val('update');
           },
       );

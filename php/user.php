@@ -17,7 +17,8 @@ if (isset($_POST['submit'])) {
             deleteUser($dbCon, (int)convertString($_POST['id']));
             break;
     }
-    redirect('/index.php?page=user');
+
+    redirect('/index.php?page=' . $_GET['page'] ?? '');
 }
 
 /**
@@ -47,6 +48,7 @@ function getUserJson(array $user): string
 function getUserFormData(): array
 {
     return [
+        'id' => convertString($_POST['id']),
         'name' => convertString($_POST['name']),
         'firstname' => convertString($_POST['firstname']),
         'description' => convertString($_POST['description']),
@@ -59,17 +61,48 @@ function getUserFormData(): array
 
 /**
  * @param PDO $dbCon
- * @param array|string[] $rowWithValue
+ * @param array $values
  * @return bool
  */
-function userRecordCreatable(PDO $dbCon, array $rowWithValue = ['email' => '']): bool
+function emailNotTaken(PDO $dbCon, array $values): bool
 {
-    foreach ($rowWithValue as $row => $value) {
-        $sql = "SELECT * FROM `users` WHERE $row = $value";
-        $statement = $dbCon->prepare($sql);
-        $statement->execute();
-        if ($statement->fetch()) {
-            $_SESSION['msg'] = 'A record "' . $value . '" already exists.';
+    $sql = "SELECT * FROM `users` WHERE email = ?";
+    $statement = $dbCon->prepare($sql);
+    $statement->execute([$values['email']]);
+    $user = $statement->fetch();
+//    var_dump($user);
+//    var_dump($values['id']);
+//    die();
+    if (isset($user)) {
+        if ($user['id'] !== $values['id']) {
+            die('inmail');
+            $_SESSION['msg'] = 'A record "' . $values['email'] . '" already exists.';
+            return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * @param PDO $dbCon
+ * @param array $values
+ * @return bool
+ */
+function userNumberNotTaken(PDO $dbCon, array $values): bool
+{
+    $sql = "SELECT * FROM `users` WHERE user_number = ?";
+    $statement = $dbCon->prepare($sql);
+    $statement->execute([$values['user_number']]);
+    $user = $statement->fetch();
+//    var_dump($user);
+//    var_dump($values['id']);
+//    die();
+
+    if (isset($user)) {
+        if ($user['id'] !== $values['id']) {
+            die('innumber');
+            $_SESSION['msg'] = 'A record "' . $values['user_number'] . '" already exists.';
             return false;
         }
     }
@@ -83,9 +116,9 @@ function userRecordCreatable(PDO $dbCon, array $rowWithValue = ['email' => '']):
 function createUser(PDO $dbCon)
 {
     $values = getUserFormData();
-    if (userRecordCreatable($dbCon, ['email' => $values['email'], 'user_number' => $values['user_number']])) {
-        $sql = 'INSERT INTO `users`(name,firstname,description,email,user_number,pwd,is_admin,created_at) 
-            VALUES(?,?,?,?,?,?,?,NOW())';
+    if (emailNotTaken($dbCon, $values) && userNumberNotTaken($dbCon, $values)) {
+        $sql = "INSERT INTO `users`(name,firstname,description,email,user_number,pwd,is_admin,created_at) 
+            VALUES(?,?,?,?,?,?,?,NOW())";
         $statement = $dbCon->prepare($sql);
         $statement->execute(
             [
@@ -109,10 +142,10 @@ function updateUser(PDO $dbCon, int $id)
 {
     //TODO: password function
     $values = getUserFormData();
-    if (userRecordCreatable($dbCon, ['email' => $values['email'], 'user_number' => $values['user_number']])) {
-        $sql = 'UPDATE `users` 
+    if (emailNotTaken($dbCon, $values) && userNumberNotTaken($dbCon, $values)) {
+        $sql = "UPDATE `users` 
                 SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,pwd = ?,is_admin = ?, updated_at = NOW()
-                WHERE id = ?';
+                WHERE id = ?";
         $statement = $dbCon->prepare($sql);
         $statement->execute([
             $values['name'],
@@ -133,7 +166,7 @@ function updateUser(PDO $dbCon, int $id)
  */
 function deleteUser(PDO $dbCon, int $id)
 {
-    $sql = 'DELETE FROM `users` WHERE id = ?';
+    $sql = "DELETE FROM `users` WHERE id = ?";
     $statement = $dbCon->prepare($sql);
     $statement->execute([$id]);
 }
@@ -158,7 +191,7 @@ function getUser(PDO $dbCon, int $id): array
  */
 function getAllUsers(PDO $dbCon): array
 {
-    $sql = 'SELECT * FROM `users`';
+    $sql = "SELECT * FROM `users`";
     $statement = $dbCon->query($sql);
 
     return $statement->fetchAll();

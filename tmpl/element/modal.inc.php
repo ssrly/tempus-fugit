@@ -2,12 +2,18 @@
     <div class="modal-content">
         <?php
         /** @var $page ./../../index.php */
-        if ($page === 'users' || $page === 'settings' || $page === 'registration') {
-            include_once './tmpl/form/user.inc.php';
-        } elseif ($page === 'times') {
-            include_once './tmpl/form/time.inc.php';
-        } else {
-            include_once './tmpl/form/login.inc.php';
+        switch ($page) {
+            case 'users':
+            case 'settings':
+            case 'registration' :
+                include_once './tmpl/form/user.inc.php';
+                break;
+            case 'times':
+                include_once './tmpl/form/time.inc.php';
+                break;
+            default:
+                include_once './tmpl/form/login.inc.php';
+                break;
         } ?>
         <div class="modal-detail hidden">
             <div class="modal-header">

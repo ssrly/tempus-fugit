@@ -17,15 +17,15 @@
 
 <body>
 <?php
-include_once './tmpl/element/header.inc.php'; ?>
-<?php
+include_once './tmpl/element/header.inc.php';
 include_once './tmpl/element/nav.inc.php'; ?>
 <hr>
 <div class="container">
     <?php
-    if (isset($_SESSION['msg'])): ?>
+    /** @var $msg /index.php */
+    if (isset($msg)): ?>
         <section id="section-msg">
-            <h3><?= $_SESSION['msg'] ?></h3>
+            <h3><?= $msg ?></h3>
         </section>
     <?php
     endif; ?>

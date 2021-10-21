@@ -117,38 +117,16 @@ function getTimeFormData(): array
 
 /**
  * @param PDO $dbCon
- * @param array|string[] $rowWithValue
- * @return bool
- */
-function groupRecordCreatable(PDO $dbCon, array $rowWithValue = ['start_at' => '']): bool
-{
-    foreach ($rowWithValue as $row => $value) {
-        $sql = 'SELECT * FROM `times` WHERE ? = ?';
-        $statement = $dbCon->prepare($sql);
-        $statement->execute([$row, $value]);
-        if ($statement->fetch()) {
-            $_SESSION['msg'] = 'A record "' . $value . '" already exists.';
-            return false;
-        }
-    }
-
-    return true;
-}
-
-/**
- * @param PDO $dbCon
  */
 function createTime(PDO $dbCon)
 {
     $values = getTimeFormData();
-    if (groupRecordCreatable($dbCon, ['start_at' => $values['startAt']])) {
-        $sql = 'INSERT INTO `times`(start_at,end_at,duration,description,user_id,created_at)
+    $sql = 'INSERT INTO `times`(start_at,end_at,duration,description,user_id,created_at)
             VALUES(?,?,?,?,?,NOW())';
-        $statement = $dbCon->prepare($sql);
-        $statement->execute(
-            [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId']]
-        );
-    }
+    $statement = $dbCon->prepare($sql);
+    $statement->execute(
+        [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId']]
+    );
 }
 
 /**
@@ -158,16 +136,13 @@ function createTime(PDO $dbCon)
 function updateTime(PDO $dbCon, int $id)
 {
     $values = getTimeFormData();
-    if (groupRecordCreatable($dbCon, ['start_at' => $values['startAt']])) {
-//        die(var_dump($values) . var_dump($id));
-        $sql = 'UPDATE `times` 
+    $sql = 'UPDATE `times` 
                 SET start_at = ?,end_at = ?,duration = ?,description = ?,user_id = ?,updated_at = NOW() 
                 WHERE `id` = ?';
-        $statement = $dbCon->prepare($sql);
-        $statement->execute(
-            [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId'], $id]
-        );
-    }
+    $statement = $dbCon->prepare($sql);
+    $statement->execute(
+        [$values['startAt'], $values['endAt'], $values['duration'], $values['description'], $values['userId'], $id]
+    );
 }
 
 /**

@@ -2,6 +2,8 @@
 
 require_once './php/user.php';
 
+$page = 'registration';
+
 ?>
 
 <section class="info-text registration">

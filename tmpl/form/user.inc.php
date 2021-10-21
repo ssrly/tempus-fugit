@@ -1,4 +1,6 @@
-<form id="user-form" action="./php/user.php" method="POST" class="hidden">
+<?php
+/** @var $page /index.php */ ?>
+<form id="user-form" action="./php/user.php?page=<?= $page ?>" method="POST" class="hidden">
     <div class="modal-header">
         <h3>User Form</h3>
         <span class="close">X</span>
@@ -45,7 +47,9 @@
         <input type="hidden" id="form-do" name="do" value="create">
         <input type="hidden" id="form-id" name="id" value="">
         <?php
-        /** @var $uid /tmpl/times.inc.php */ ?>
+        /** @var $uid /tmpl/users.inc.php */
+
+        ?>
         <input type="hidden" id="form-user-id" name="user_id" value="<?= $uid ?>">
         <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
         <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">

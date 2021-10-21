@@ -1,4 +1,6 @@
-<form id="time-form" action="./php/time.php" method="POST" class="hidden">
+<?php
+/** @var $page /index.php */ ?>
+<form id="time-form" action="./php/time.php?page=<?= $page ?>" method="POST" class="hidden">
     <div class="modal-header">
         <h3>Time Form</h3>
         <span class="close">X</span>
