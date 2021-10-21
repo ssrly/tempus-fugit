@@ -8,19 +8,20 @@
     <div class="modal-body form-body">
         <div class="form-group">
             <label for="form-name"></label>
-            <input id="form-name" class="form-text-input required" type="text" name="name" placeholder="Your Lastname">
+            <input id="form-name" class="form-text-input required" type="text" name="name"
+                   placeholder="Your Lastname">
             <label for="form-firstname"></label>
             <input id="form-firstname" class="form-text-input required" type="text" name="firstname"
                    placeholder="Your Firstname">
         </div>
         <div class="form-group">
+            <label for="form-email"></label>
+            <input id="form-email" class="form-mail-input required" type="email" name="email" placeholder="Your E-Mail">
+        </div>
+        <div class="form-group">
             <label for="form-user-number"></label>
             <input id="form-user-number" class="form-text-input required" type="text" name="user_number"
                    placeholder="Your User Number">
-        </div>
-        <div class="form-group">
-            <label for="form-email"></label>
-            <input id="form-email" class="form-mail-input required" type="email" name="email" placeholder="Your E-Mail">
         </div>
         <div class="form-group">
             <label for="form-pwd"></label>
@@ -37,7 +38,7 @@
         <?php
         if (isAdmin()): ?>
             <div class="form-group">
-                <label for="form-is-admin">Has admin rights</label>
+                <label for="form-is-admin" class="label-checkbox">Has admin rights</label>
                 <input id="form-is-admin" class="form-text-input" type="checkbox" name="is_admin">
             </div>
         <?php

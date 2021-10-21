@@ -1,7 +1,7 @@
 'use strict';
 
 jQuery(document).ready(function() {
-      setDefaultInputs();
+      setDefaultInputs(true);
 
       if (!isLoggedIn()) {
         $('.login-out').click(function(event) {
@@ -98,12 +98,14 @@ jQuery(document).ready(function() {
        * @param {JSON} data
        */
       function setDetail(body, data) {
+        let div = getDiv('', ['modal-container']);
         body.append(getHeadline('Description:'));
         body.append(getParagraph(data.description));
-        body.append(getHeadline('Created at:'));
-        body.append(getParagraph(data.createdAt));
-        body.append(getHeadline('Updated at:'));
-        body.append(getParagraph(data.updatedAt));
+        body.append(div);
+        div.append(getHeadline('Created at:'));
+        div.append(getParagraph(data.createdAt));
+        div.append(getHeadline('Updated at:'));
+        div.append(getParagraph(data.updatedAt));
       }
 
       /**
@@ -111,11 +113,13 @@ jQuery(document).ready(function() {
        * @param {JSON} data
        */
       function setTimeDetail(body, data) {
+        let div = getDiv('', ['modal-container']);
         $('#modal-headline').text('Details Time Record:');
-        body.append(getHeadline('Start at:'));
-        body.append(getParagraph(`${data.startDate} ${data.startTime}`));
-        body.append(getHeadline('End at:'));
-        body.append(getParagraph(`${data.endDate} ${data.endTime}`));
+        body.append(div);
+        div.append(getHeadline('Start at:'));
+        div.append(getParagraph(`${data.startDate} ${data.startTime}`));
+        div.append(getHeadline('End at:'));
+        div.append(getParagraph(`${data.endDate} ${data.endTime}`));
         body.append(getHeadline('Duration:'));
         body.append(getParagraph(data.duration));
       }
@@ -158,8 +162,16 @@ jQuery(document).ready(function() {
         $('#form-is-admin').prop('checked', data.isAdmin === '1');
       }
 
-      /** sets form fields to default **/
-      function setDefaultInputs() {
+      /**
+       * @param {boolean} isOnload
+       */
+      function setDefaultInputs(isOnload = false) {
+        if (isOnload) {
+          $('input.required').each(function() {
+            getSpan('', ['required']).insertAfter($(this));
+          });
+        }
+
         $('#form-reset').click();
 
         $('input[type="date"]').each(function() {
@@ -269,6 +281,12 @@ jQuery(document).ready(function() {
         return $(document.createElement('p')).text(text);
       }
 
+      /**
+       * @param {string} text
+       * @param {string} htmlFor
+       * @param {Array} classNames
+       * @returns {jQuery|HTMLElement}
+       */
       function getLabel(text, htmlFor = '', classNames = []) {
         let label = $(document.createElement('label'));
         label.addClass(classNames.join(' '));
@@ -276,6 +294,32 @@ jQuery(document).ready(function() {
         label.text(text);
 
         return label;
+      }
+
+      /**
+       * @param {string} idName
+       * @param {Array} classNames
+       * @returns {jQuery|HTMLElement}
+       */
+      function getDiv(idName = '', classNames = []) {
+        let div = $(document.createElement('div'));
+        div.addClass(classNames.join(' '));
+        div.attr('id', idName);
+
+        return div;
+      }
+
+      /**
+       * @param {string} idName
+       * @param {Array} classNames
+       * @returns {jQuery|HTMLElement}
+       */
+      function getSpan(idName = '', classNames = []) {
+        let span = $(document.createElement('span'));
+        span.addClass(classNames.join(' '));
+        span.attr('id', idName);
+
+        return span;
       }
 
       /**

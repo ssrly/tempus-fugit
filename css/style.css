@@ -254,6 +254,7 @@ p {
 
 .modal-header {
     text-align: center;
+    margin-bottom: var(--s);
     padding: var(--xs);
     font-size: var(--xl);
     font-weight: bold;
@@ -284,7 +285,6 @@ p {
 
 input,
 textarea {
-    /*display: inline;*/
     min-width: 15%;
     max-width: 100%;
     margin: 5px;
@@ -293,19 +293,25 @@ textarea {
     border-radius: 3px;
 }
 
-form label {
-    margin: 5px;
-}
-
 .label-textarea {
     display: block;
 }
 
+.label-checkbox,
+.label-textarea {
+    margin-left: var(--xxs);
+
+}
+
 #form-required-info:before,
-form input.required:after {
+.form-group span.required:after {
+    margin: 0 var(--xxs);
     color: var(--color-danger);
     content: '*';
-    margin: 0 var(--xxs);
+}
+
+.form-group span.required:after {
+    margin: 0;
 }
 
 /* Misc */

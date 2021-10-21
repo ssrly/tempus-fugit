@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="./css/global.css"/>
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="./../../lib/jquery/jquery-3.6.0.min.js"></script>
-    <script src="./../../lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="./../../lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="./js/script.js"></script>
     <title>Tempus Fugit</title>
