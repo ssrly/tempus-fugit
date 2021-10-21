@@ -201,6 +201,11 @@ jQuery(document).ready(function() {
           dataType: 'text',
         }).done(function(data) {
           modalContent.append(data);
+          let close = modalContent.find('.close');
+          close.css('cursor', 'pointer');
+          close.on('click', function() {
+            location.reload();
+          });
         });
       }
 
@@ -279,14 +284,17 @@ jQuery(document).ready(function() {
         let end = new Date(
             `${endDateFormField.val()} ${$('#form-end-time').val()}`);
 
+        //TODO: refactor
         for (let time of times) {
           let oldStart = new Date(`${time.startDate} ${time.startTime}`);
           let oldEnd = new Date(`${time.endDate} ${time.endTime}`);
           if (start >= oldStart && start <= oldEnd) {
+            startDateFormField.focus();
             startDateFormField.parent().
                 prepend(getLabel('Time conflict', 'form-start-date', ['error']));
             return false;
           } else if (end >= oldStart && end <= oldEnd) {
+            endDateFormField.focus();
             endDateFormField.parent().
                 prepend(getLabel('Time conflict', 'form-end-date', ['error']));
             return false;
