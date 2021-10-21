@@ -1,0 +1,55 @@
+:root {
+    /* color */
+    --color-primary: rgb(11, 125, 169);
+    --color-secondary: rgb(236, 164, 0);
+    --color-tertiary: rgb(0, 21, 53);
+    --color-bright: #fff;
+    --color-light: #f3f3f3;
+    --color-gray: #cdcdcd;
+    --color-dark: #111;
+    --color-success: #2ECC40;
+    --color-warning: #FFDC00;
+    --color-danger: #FF4136;
+    /* font */
+    --font-sans-serif: 'Poppins', Arial, Helvetica, sans-serif;;
+    /* size */
+    --xxs: 0.3rem;
+    --xs: 0.5rem;
+    --s: 0.8rem;
+    --m: 1rem;
+    --l: 1.125rem;
+    --xl: 1.5rem;
+    --xxl: 2rem;
+    /*breakpoints*/
+    --break-xl: 1200px;
+    --break-l: 992px;
+    --break-m: 768px;
+    --break-s: 360px;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap;
+    src: local('Poppins'), url('./../assets/font/Poppins-Medium.ttf') format("truetype");
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-family: var(--font-sans-serif);
+    font-size: var(--m);
+    color: var(--color-dark);
+    background-color: var(--color-light);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}

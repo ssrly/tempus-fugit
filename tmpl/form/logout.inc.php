@@ -4,6 +4,6 @@
         <span class="close">X</span>
     </div>
     <div class="form-group">
-        <input id="form-logout" class="btn btn-danger" type="submit" name="logout" value="Logout">
+        <input id="form-logout" class="btn btn-logout" type="submit" name="logout" value="Logout">
     </div>
 </form>

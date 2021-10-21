@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="./assets/img/favicon.ico">
     <link rel="stylesheet" href="./../../lib/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="./css/global.css"/>
     <link rel="stylesheet" href="./css/style.css"/>
     <script src="./../../lib/jquery/jquery-3.6.0.min.js"></script>
     <script src="./../../lib/jquery-ui/jquery-ui.min.js"></script>
@@ -17,9 +18,7 @@
 
 <body>
 <?php
-include_once './tmpl/element/header.inc.php';
-include_once './tmpl/element/nav.inc.php'; ?>
-<hr>
+include_once './tmpl/element/header.inc.php'; ?>
 <div class="container">
     <?php
     /** @var $msg /index.php */
@@ -34,7 +33,6 @@ include_once './tmpl/element/nav.inc.php'; ?>
     /** @var $tmpl ./../index.php */
     include_once $tmpl; ?>
 </div>
-<hr>
 <?php
 include_once './tmpl/element/footer.inc.php'; ?>
 <?php

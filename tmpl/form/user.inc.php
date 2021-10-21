@@ -51,7 +51,7 @@
 
         ?>
         <input type="hidden" id="form-user-id" name="user_id" value="<?= $uid ?>">
-        <input id="form-reset" class="btn btn-danger" type="reset" name="Reset" value="Reset">
-        <input id="form-submit" class="btn btn-success" type="submit" name="submit" value="Submit">
+        <input id="form-reset" class="btn btn-reset" type="reset" name="Reset" value="Reset">
+        <input id="form-submit" class="btn btn-submit" type="submit" name="submit" value="Submit">
     </div>
 </form>

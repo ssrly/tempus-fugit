@@ -18,8 +18,8 @@
     </div>
     <div class="form-group">
         <input type="hidden" name="csrf_token" value="<?= $_SESSION['token'] ?>"/>
-        <input id="form-register" class="btn btn-register btn-default" type="submit" name="register" value="Register">
-        <input id="form-reset" class="btn btn-danger" type="reset" name="reset" value="Reset">
-        <input id="form-login" class="btn btn-success" type="submit" name="login" value="Login">
+        <input id="form-register" class="btn btn-register" type="submit" name="register" value="Register">
+        <input id="form-reset" class="btn btn-reset" type="reset" name="reset" value="Reset">
+        <input id="form-login" class="btn btn-login" type="submit" name="login" value="Login">
     </div>
 </form>

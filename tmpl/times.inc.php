@@ -9,58 +9,46 @@ $times = getAllTimesByUser($dbCon, $uid);
 
 <section class="info-text">
     <h2>Times - Tempus Fugit</h2>
-    <p>In this view, all existing times by your time tracking are shown in form of a list.</p>
-    <p>New times can be created and existing ones can be reviewed, updated or deleted by the you.</p>
-    <p>As admin you can reach this view by selecting an user in the users view and administrate his or her times. As
-        an user only your own times are shown.</p>
+    <p>This view, shows all existing times tracking records.</p>
 </section>
 
 <section>
-    <button id="btn-create" class="btn btn-create btn-success" type="button" title="Create New Group">
+    <button id="btn-create" class="btn btn-create" type="button" title="Create New Group">
         <i class="fas fa-plus"></i>
         <span>Add Time</span>
     </button>
 </section>
 
-<section>
-    <table>
+<section class="table-container">
+    <table class="table">
         <thead>
         <tr>
             <th>Start</th>
             <th>End</th>
             <th>Duration</th>
             <th>Description</th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>Controls</th>
         </tr>
         </thead>
         <tbody>
         <?php
         foreach ($times as $time):
             $dbRecordJson = getTimeJson($time); ?>
-            <tr class="tr-table time-tr-table" data-dbrecord="<?= $dbRecordJson; ?>">
-                <td><?= formatDate($time['start_at']); ?></td>
-                <td><?= formatDate($time['end_at']); ?></td>
-                <td><?= getDurationString($time['duration']); ?></td>
-                <td><?= $time['description']; ?></td>
-                <td>
-                    <button class="btn btn-detail btn-info" type="button"
-                            title="Open Group Detail">
+            <tr class="" data-dbrecord="<?= $dbRecordJson; ?>">
+                <td data-label="Start"><?= formatDate($time['start_at']); ?></td>
+                <td data-label="End"><?= formatDate($time['end_at']); ?></td>
+                <td data-label="Duration"><?= getDurationString($time['duration']); ?></td>
+                <td data-label="<?= $time['description'] ? 'Description' : ''; ?>"><?= $time['description']; ?></td>
+                <td data-label="Controls">
+                    <button class="btn btn-detail" type="button" title="Open Group Detail">
                         <i class="fas fa-info"></i>
-                        <span>Open Detail</span>
+                        <span>Detail</span>
                     </button>
-                </td>
-                <td>
-                    <button class="btn btn-update btn-primary" type="button"
-                            title="Update Group">
+                    <button class="btn btn-update" type="button" title="Update Group">
                         <i class="fas fa-edit"></i>
                         <span>Update</span>
                     </button>
-                </td>
-                <td>
-                    <button class="btn btn-delete btn-danger" type="button"
-                            title="Delete Group">
+                    <button class="btn btn-delete" type="button" title="Delete Group">
                         <i class="fas fa-trash-alt"></i>
                         <span>Delete</span>
                     </button>

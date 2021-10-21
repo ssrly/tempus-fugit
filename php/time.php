@@ -94,7 +94,7 @@ function getDurationInSeconds(string $start, string $end): int
  */
 function getDurationString(int $duration): string
 {
-    return gmdate('H:i:s', $duration);
+    return gmdate('H:i', $duration);
 }
 
 /**
