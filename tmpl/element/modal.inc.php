@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal hidden">
     <div class="modal-content">
         <?php
         /** @var $page ./../../index.php */
@@ -17,8 +17,8 @@
         } ?>
         <div class="modal-detail hidden">
             <div class="modal-header">
-                <h3 id="modal-headline">Details</h3>
-                <span class="close">X</span>
+                <span id="modal-headline">Details</span>
+                <i class="fas fa-times close"></i>
             </div>
             <div class="modal-body detail-body"></div>
         </div>

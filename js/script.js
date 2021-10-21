@@ -6,6 +6,7 @@ jQuery(document).ready(function() {
       if (!isLoggedIn()) {
         $('.login-out').click(function(event) {
           event.preventDefault();
+          $('.modal').toggleClass('hidden');
           $('#login-form').toggleClass('hidden');
         });
       } else {
@@ -14,6 +15,7 @@ jQuery(document).ready(function() {
 
       $('#btn-create').click(function() {
         setDefaultInputs();
+        $('.modal').removeClass('hidden');
         $('form').removeClass('hidden');
         $('#form-do').val('create');
       });
@@ -21,6 +23,7 @@ jQuery(document).ready(function() {
       $('.btn-update').click(function() {
             let form = $('form');
             let dbData = $(this).parent().parent().data().dbrecord;
+            $('.modal').removeClass('hidden');
             form.removeClass('hidden');
 
             if (form.is('#time-form')) {
@@ -45,6 +48,7 @@ jQuery(document).ready(function() {
       });
 
       $('.btn-detail').click(function() {
+        $('.modal').removeClass('hidden');
         $('.modal-detail').removeClass('hidden');
         let dbData = $(this).parent().parent().data().dbrecord;
         let form = $('form');
@@ -69,10 +73,12 @@ jQuery(document).ready(function() {
       });
 
       $('.close').click(function() {
+        $('.modal').addClass('hidden');
         $(this).parent().parent().addClass('hidden');
       });
 
       if ($('section').hasClass('registration')) {
+        $('.modal').toggleClass('hidden');
         $('#user-form').toggleClass('hidden');
       }
 

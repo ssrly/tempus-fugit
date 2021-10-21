@@ -41,7 +41,7 @@
     </li>
     <?php
     if (isLoggedIn()): ?>
-        <li class="<?= $page === 'setup' ? 'active' : ''; ?>">
+        <li class="<?= $page === 'settings' ? 'active' : ''; ?>">
             <a href="index.php?page=settings">
                 <span class="link-name">Settings</span>
                 <i class="fas fa-cog"></i>

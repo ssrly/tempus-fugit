@@ -1,9 +1,11 @@
 <form id="logout-form" action="./php/logout.php" method="POST" class="">
     <div class="modal-header">
-        <h3>You want to Logout?</h3>
-        <span class="close">X</span>
+        <span>You want to Logout?</span>
+        <i class="fas fa-times close"></i>
     </div>
-    <div class="form-group">
-        <input id="form-logout" class="btn btn-logout" type="submit" name="logout" value="Logout">
+    <div class="modal-body form-body">
+        <div class="form-group btn-group">
+            <input id="form-logout" class="btn btn-logout" type="submit" name="logout" value="Logout">
+        </div>
     </div>
 </form>
