@@ -73,9 +73,10 @@ function emailNotTaken(PDO $dbCon, array $values): bool
 //    var_dump($user);
 //    var_dump($values['id']);
 //    die();
+    //TODO: fix mail db validation
     if (isset($user)) {
         if ($user['id'] !== $values['id']) {
-            die('inmail');
+//            die('inmail');
             $_SESSION['msg'] = 'A record "' . $values['email'] . '" already exists.';
             return false;
         }
@@ -98,10 +99,10 @@ function userNumberNotTaken(PDO $dbCon, array $values): bool
 //    var_dump($user);
 //    var_dump($values['id']);
 //    die();
-
+    //TODO: fix number db validation
     if (isset($user)) {
         if ($user['id'] !== $values['id']) {
-            die('innumber');
+//            die('innumber');
             $_SESSION['msg'] = 'A record "' . $values['user_number'] . '" already exists.';
             return false;
         }
