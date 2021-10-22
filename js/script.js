@@ -98,14 +98,16 @@ jQuery(document).ready(function() {
        * @param {JSON} data
        */
       function setDetail(body, data) {
-        let div = getDiv('', ['modal-container']);
-        body.append(getHeadline('Description:'));
-        body.append(getParagraph(data.description));
+        let div = getDiv('', ['detail-container']);
         body.append(div);
-        div.append(getHeadline('Created at:'));
-        div.append(getParagraph(data.createdAt));
-        div.append(getHeadline('Updated at:'));
-        div.append(getParagraph(data.updatedAt));
+        div.append(
+            getHeadline('Description:'),
+            getParagraph(data.description),
+            getHeadline('Created at:'),
+            getParagraph(data.createdAt),
+            getHeadline('Updated at:'),
+            getParagraph(data.updatedAt),
+        );
       }
 
       /**
@@ -113,15 +115,17 @@ jQuery(document).ready(function() {
        * @param {JSON} data
        */
       function setTimeDetail(body, data) {
-        let div = getDiv('', ['modal-container']);
+        let div = getDiv('', ['time-detail-container']);
         $('#modal-headline').text('Details Time Record:');
         body.append(div);
-        div.append(getHeadline('Start at:'));
-        div.append(getParagraph(`${data.startDate} ${data.startTime}`));
-        div.append(getHeadline('End at:'));
-        div.append(getParagraph(`${data.endDate} ${data.endTime}`));
-        body.append(getHeadline('Duration:'));
-        body.append(getParagraph(data.duration));
+        div.append(
+            getHeadline('Start at:'),
+            getParagraph(`${data.startDate} ${data.startTime}`),
+            getHeadline('End at:'),
+            getParagraph(`${data.endDate} ${data.endTime}`),
+            getHeadline('Duration:'),
+            getParagraph(data.duration),
+        );
       }
 
       /**
@@ -130,12 +134,16 @@ jQuery(document).ready(function() {
        */
       function setUserDetail(body, data) {
         $('#modal-headline').text(`Details ${data.firstname} ${data.name}:`);
-        body.append(getHeadline('Email:'));
-        body.append(getParagraph(data.email));
-        body.append(getHeadline('User Number:'));
-        body.append(getParagraph(data.userNumber));
-        body.append(getHeadline('Has Amin Rights:'));
-        body.append(getParagraph((data.isAdmin === '1' ? 'Yes' : 'No')));
+        let div = getDiv('', ['user-detail-container']);
+        body.append(div);
+        div.append(
+            getHeadline('Email:'),
+            getParagraph(data.email),
+            getHeadline('User Number:'),
+            getParagraph(data.userNumber),
+            getHeadline('Has Amin Rights:'),
+            getParagraph((data.isAdmin === '1' ? 'Yes' : 'No')),
+        );
       }
 
       /**
