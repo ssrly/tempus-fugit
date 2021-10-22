@@ -252,8 +252,8 @@ p {
 
 .modal-content {
     display: block;
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 60%;
+    max-height: 60%;
     margin: 5% auto;
     border: var(--xxs) solid var(--color-primary);
     border-radius: 5px;
@@ -277,7 +277,6 @@ p {
     font-size: var(--xl);
     font-weight: bold;
     letter-spacing: 2px;
-    /*border-radius: 5px;*/
     background-color: var(--color-primary);
     color: var(--color-secondary);
 }
@@ -293,6 +292,21 @@ p {
 .close:focus {
     color: var(--color-dark);
     cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 80%;
+        max-height: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        max-width: 95%;
+        max-height: 95%;
+    }
 }
 
 /* Form */
