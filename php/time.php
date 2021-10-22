@@ -176,7 +176,7 @@ function getTime(PDO $dbCon, int $id): array
  */
 function getAllTimes(PDO $dbCon): array
 {
-    $sql = 'SELECT * FROM `times`';
+    $sql = 'SELECT * FROM `times` ORDER BY start_at DESC';
     $statement = $dbCon->query($sql);
 
     return $statement->fetchAll();
@@ -189,7 +189,7 @@ function getAllTimes(PDO $dbCon): array
  */
 function getAllTimesByUser(PDO $dbCon, int $userId): array
 {
-    $sql = "SELECT * FROM times WHERE user_id = $userId";
+    $sql = "SELECT * FROM times WHERE user_id = $userId ORDER BY start_at DESC";
     $statement = $dbCon->query($sql);
     $statement->execute();
 
