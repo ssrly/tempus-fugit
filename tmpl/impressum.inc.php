@@ -1,5 +1,5 @@
 <section class="info-text">
-    <h2>Impressum - Tempus Fugit</h2>
+    <h2>Impressum</h2>
     <p>This is a project as part of a further education by Stephan Reinhold. The educational institution is WBS -
         Training AG</p>
     <p>A comercial use at this stage is not planed.</p>

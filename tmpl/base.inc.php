@@ -31,10 +31,15 @@ include_once './tmpl/element/header.inc.php'; ?>
     <?php
     /** @var $tmpl ./../index.php */
     include_once $tmpl; ?>
+
+    <div id="side-menu" class="menu">
+        <?php
+        include_once './tmpl/element/nav.inc.php';
+        ?>
+    </div>
 </div>
 <?php
-include_once './tmpl/element/footer.inc.php'; ?>
-<?php
+include_once './tmpl/element/footer.inc.php';
 include_once './tmpl/element/modal.inc.php'; ?>
 </body>
 

@@ -7,7 +7,7 @@ $user = getUser($dbCon, $_SESSION['user_id']);
 ?>
 
 <section class="info-text">
-    <h2>Setup - Tempus Fugit</h2>
+    <h2>Settings</h2>
     <p>This view shows your saved user informations.</p>
 </section>
 

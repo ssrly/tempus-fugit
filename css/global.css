@@ -21,6 +21,7 @@
     --xl: 1.5rem;
     --xxl: 2rem;
     /*breakpoints*/
+    --break-xxl: 1501px;
     --break-xl: 1201px;
     --break-l: 993px;
     --break-m: 769px;

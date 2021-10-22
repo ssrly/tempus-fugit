@@ -8,7 +8,7 @@ $users = getAllUsers($dbCon);
 ?>
 
 <section class="info-text">
-    <h2>Users - Tempus Fugit</h2>
+    <h2>Users</h2>
     <p>This view shows all saved user information.</p>
 </section>
 

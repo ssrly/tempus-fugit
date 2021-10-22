@@ -8,7 +8,7 @@ $times = getAllTimesByUser($dbCon, $uid);
 ?>
 
 <section class="info-text">
-    <h2>Times - Tempus Fugit</h2>
+    <h2>Times</h2>
     <p>This view, shows all existing times tracking records.</p>
 </section>
 
