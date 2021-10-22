@@ -26,6 +26,8 @@ p {
 
 .header,
 .footer {
+    width: 100%;
+    margin: 0;
     background-color: var(--color-primary);
     letter-spacing: 2px;
 }
@@ -133,7 +135,37 @@ p {
 
 /* Footer */
 .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     border-top: 1px solid var(--color-primary);
+}
+
+.copyright {
+    margin-left: var(--s);
+}
+
+/* Content */
+.container {
+    overflow: hidden;
+    width: var(--break-xl);
+    margin: 0 auto;
+    padding: var(--s);
+    background: var(--color-bright);
+}
+
+
+@media (max-width: 1200px) {
+    .container {
+        width: 100%;
+        padding: var(--xs);
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0;
+    }
 }
 
 /* Buttons */
@@ -250,6 +282,17 @@ p {
     background-color: rgba(0, 0, 0, 0.85);
 }
 
+.modal-header {
+    text-align: center;
+    margin: -1px;
+    padding: var(--xs);
+    font-size: var(--xl);
+    font-weight: bold;
+    letter-spacing: 2px;
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
 .modal-content {
     display: block;
     max-width: 60%;
@@ -270,16 +313,6 @@ p {
     border-top: 1px solid var(--color-tertiary);
 }
 
-.modal-header {
-    text-align: center;
-    margin: -1px;
-    padding: var(--xs);
-    font-size: var(--xl);
-    font-weight: bold;
-    letter-spacing: 2px;
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-}
 
 .close {
     float: right;

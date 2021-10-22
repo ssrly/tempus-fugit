@@ -21,10 +21,10 @@
     --xl: 1.5rem;
     --xxl: 2rem;
     /*breakpoints*/
-    --break-xl: 1200px;
-    --break-l: 992px;
-    --break-m: 768px;
-    --break-s: 360px;
+    --break-xl: 1201px;
+    --break-l: 993px;
+    --break-m: 769px;
+    --break-s: 577px;
 }
 
 @font-face {
@@ -46,7 +46,7 @@ html {
     font-family: var(--font-sans-serif);
     font-size: var(--m);
     color: var(--color-dark);
-    background-color: var(--color-light);
+    background-color: var(--color-gray);
 }
 
 img {
