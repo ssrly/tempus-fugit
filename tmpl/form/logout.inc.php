@@ -4,7 +4,7 @@
         <i class="fas fa-times close"></i>
     </div>
     <div class="modal-body form-body">
-        <div class="form-group btn-group">
+        <div class="form-group btn-group no-border">
             <input id="form-logout" class="btn btn-logout" type="submit" name="logout" value="Logout">
         </div>
     </div>

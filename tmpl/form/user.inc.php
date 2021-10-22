@@ -7,31 +7,31 @@
     </div>
     <div class="modal-body form-body">
         <div class="form-group">
-            <label for="form-name"></label>
+            <label for="form-name" class="collapse">Name</label>
             <input id="form-name" class="form-text-input required" type="text" name="name"
                    placeholder="Your Lastname">
-            <label for="form-firstname"></label>
+            <label for="form-firstname" class="hidden"></label>
             <input id="form-firstname" class="form-text-input required" type="text" name="firstname"
                    placeholder="Your Firstname">
         </div>
         <div class="form-group">
-            <label for="form-email"></label>
+            <label for="form-email" class="collapse">E Mail</label>
             <input id="form-email" class="form-mail-input required" type="email" name="email" placeholder="Your E-Mail">
         </div>
         <div class="form-group">
-            <label for="form-user-number"></label>
+            <label for="form-user-number" class="collapse">Number</label>
             <input id="form-user-number" class="form-text-input required" type="text" name="user_number"
                    placeholder="Your User Number">
         </div>
         <div class="form-group">
-            <label for="form-pwd"></label>
+            <label for="form-pwd" class="collapse">Password</label>
             <input id="form-pwd" class="form-text-input required" type="password" name="pwd"
                    placeholder="Your Password">
-            <label for="form-pwd-repeat"></label>
+            <label for="form-pwd-repeat" class="hidden"></label>
             <input id="form-pwd-repeat" class="form-text-input required" type="password" name="pwd_repeat"
                    placeholder="Repeat Your Password">
         </div>
-        <div class="form-group">
+        <div class="form-group flex-wrap">
             <label for="form-description" class="label-textarea">Description</label>
             <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
         </div>

@@ -12,7 +12,7 @@ $users = getAllUsers($dbCon);
     <p>This view shows all saved user information.</p>
 </section>
 
-<section>
+<section class="btn-group">
     <button id="btn-create" class="btn btn-create" type="button" title="Create New Group">
         <i class="fas fa-plus"></i>
         <span>Add User</span>

@@ -9,16 +9,16 @@
         <div class="form-group">
             <label for="form-start-date">Start</label>
             <input id="form-start-date" class="form-date-input" type="date" name="start_date">
-            <label for="form-start-time"></label>
+            <label for="form-start-time" class="hidden"></label>
             <input id="form-start-time" class="form-time-input" type="time" name="start_time">
         </div>
         <div class="form-group">
             <label for="form-end-date" aria-label="">End</label>
             <input id="form-end-date" class="form-date-input" type="date" name="end_date">
-            <label for="form-end-time"></label>
+            <label for="form-end-time" class="hidden"></label>
             <input id="form-end-time" class="form-time-input" type="time" name="end_time">
         </div>
-        <div class="form-group">
+        <div class="form-group flex-wrap">
             <label for="form-description" class="label-textarea">Description</label>
             <textarea id="form-description" cols="50" rows="3" wrap="soft" name="description"></textarea>
         </div>

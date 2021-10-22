@@ -3,6 +3,17 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
+h2 {
+    margin-bottom: var(--m);
+    font-weight: bold;
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: var(--s);
+    text-align: center;
+}
+
 p {
     margin-bottom: var(--s);
 }
@@ -161,6 +172,7 @@ p {
 }
 
 .btn-group {
+    display: block !important;
     text-align: right;
 }
 
@@ -229,6 +241,7 @@ p {
 
 /* Modal */
 .modal {
+    z-index: 9999;
     position: absolute;
     top: 0;
     left: 0;
@@ -242,24 +255,29 @@ p {
     max-width: 80%;
     max-height: 80%;
     margin: 5% auto;
-    padding: var(--xxs);
+    border: var(--xxs) solid var(--color-primary);
     border-radius: 5px;
     background-color: var(--color-bright);
 }
 
-.modal-content .btn-group {
+.modal-content .modal-body,
+.modal-content .modal-body .btn-group {
+    padding: var(--xxs);
+}
+
+.modal-content .modal-body .btn-group {
     padding-top: var(--s);
     border-top: 1px solid var(--color-tertiary);
 }
 
 .modal-header {
     text-align: center;
-    margin-bottom: var(--s);
+    margin: -1px;
     padding: var(--xs);
     font-size: var(--xl);
     font-weight: bold;
     letter-spacing: 2px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
     background-color: var(--color-primary);
     color: var(--color-secondary);
 }
@@ -279,13 +297,13 @@ p {
 
 /* Form */
 .form-group {
-    display: block;
+    display: flex;
     margin: 5px;
 }
 
-input,
-textarea {
-    min-width: 15%;
+form input,
+form textarea {
+    min-width: 35%;
     max-width: 100%;
     margin: 5px;
     padding: 5px;
@@ -293,14 +311,18 @@ textarea {
     border-radius: 3px;
 }
 
-.label-textarea {
-    display: block;
+form textarea {
+    width: 95%;
 }
 
-.label-checkbox,
+form label,
 .label-textarea {
-    margin-left: var(--xxs);
+    min-width: 20%;
+}
 
+#form-required-info {
+    font-size: var(--s);
+    font-weight: lighter;
 }
 
 #form-required-info:before,
@@ -314,36 +336,19 @@ textarea {
     margin: 0;
 }
 
+
+@media (max-width: 576px) {
+    form input,
+    form textarea {
+        width: 95%;
+    }
+
+    form label.collapse {
+        display: none;
+    }
+}
+
 /* Misc */
-.clear {
-    clear: both;
-}
-
-.clearfix:after {
-    clear: both;
-    content: "";
-    display: block;
-}
-
-.wrap {
-    padding: 10px 0;
-    margin: 0;
-}
-
-.wrapper {
-    width: 100%;
-    margin: 0 auto;
-    background-color: var(--color-light);
-}
-
-.inner-header-wrapper {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    /*width: var(--wrapperWidth);*/
-    margin: 0 auto -100px;
-}
-
 .error {
     color: var(--color-danger);
 }
@@ -352,6 +357,15 @@ textarea {
     text-align: center;
 }
 
+.no-border {
+    border: 0 !important;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .hidden {
-    display: none ! important;
+    display: none !important;
 }

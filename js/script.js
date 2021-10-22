@@ -225,6 +225,7 @@ jQuery(document).ready(function() {
             location.reload();
           });
         });
+        modalContent.parent().toggleClass('hidden');
       }
 
       /**
