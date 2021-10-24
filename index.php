@@ -28,9 +28,9 @@ switch ($page) {
     case 'impressum':
         $tmpl = './tmpl/impressum.inc.php';
         break;
-    case 'docu':
-        $tmpl = './tmpl/docu.inc.php';
-        break;
+//    case 'docu':
+//        $tmpl = './tmpl/docu.inc.php';
+//        break;
     case 'registration':
         $tmpl = './tmpl/registration.inc.php';
         break;

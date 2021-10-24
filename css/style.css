@@ -11,7 +11,7 @@ h2 {
 
 h3 {
     margin-bottom: var(--s);
-    text-align: center;
+    /*text-align: center;*/
 }
 
 p {
@@ -20,6 +20,11 @@ p {
 
 /* Header + Navigation */
 .header {
+    z-index: 600;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     border-bottom: 1px solid var(--color-primary);
 }
 
@@ -55,24 +60,18 @@ nav {
 }
 
 .nav-icon {
+    display: none;
     position: absolute;
-    right: 3%;
+    right: 2%;
+    cursor: pointer;
+    font-size: var(--xxl);
+    color: var(--color-secondary);
 }
 
-.nav-icon .bar {
-    width: var(--xl);
-    height: 3px;
-    margin: var(--xs) 0;
-    background-color: var(--color-secondary);
-    border-radius: 3px;
-}
-
-.nav-icon .bar:first-child {
-    margin-top: 0;
-}
-
-.nav-icon .bar:last-child {
-    margin-bottom: 0;
+@media (max-width: 992px) {
+    .nav-icon {
+        display: inline-block;
+    }
 }
 
 @media (max-width: 576px) {
@@ -87,14 +86,16 @@ nav {
 
 /* Menu */
 #side-menu ul {
-    z-index: 9998;
-    position: absolute;
+    z-index: 500;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: end;
-    top: 8vh;
+    top: 0;
     right: 0;
-    height: 92vh;
+    height: 100%;
+    max-width: 175px;
+    margin-top: 8vh;
     padding: var(--xl) 0;
     list-style: none;
     background-color: var(--color-tertiary);
@@ -105,43 +106,74 @@ nav {
     padding: var(--s);
 }
 
-#side-menu ul li a {
+
+#side-menu ul li a.nav-link {
     text-decoration: none;
     float: right;
     color: var(--color-bright);
 }
 
-#side-menu ul li a i {
-    font-size: var(--xl);
+#side-menu ul li:hover a.nav-link i,
+#side-menu ul li.active i {
+    background: var(--color-bright);
+    color: var(--color-tertiary);
 }
 
-#side-menu * li.active span,
-#side-menu * li.active i {
+#side-menu ul li a.nav-link i {
+    font-size: var(--xl);
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#side-menu ul li a.nav-link span.link-name {
+    margin-right: var(--m);
+}
+
+#side-menu * li.active span {
     border-bottom: 2px solid var(--color-bright);
 }
 
-#side-menu * li.active i {
-    padding: var(--xxs);
-    padding-bottom: 3px;
-}
-
-@media (max-width: 1500px) {
-
-}
-
-@media (max-width: 992px) {
-    #side-menu ul li a span {
+@media (max-width: 992px) and (min-width: 575px) {
+    #side-menu ul li a.nav-link span.link-name {
         display: none;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    #side-menu ul {
+        transform: translateX(0%);
+        transition: transform 0.5s ease-in;
+    }
+
+    #side-menu ul li {
+        opacity: 1;
     }
 
 }
 
-@media (max-width: 768px) {
-}
-
 @media (max-width: 576px) {
+    body {
+        overflow-x: hidden;
+    }
+
     #side-menu ul {
-        display: none;
+        min-width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    #side-menu ul li {
+        opacity: 0;
+    }
+
+    #side-menu ul li a.nav-link span.link-name {
+        display: initial;
+    }
+
+    .menu-active {
+        transform: translateX(0) !important;
     }
 }
 
@@ -160,24 +192,20 @@ nav {
 
 /* Content */
 .container {
-    width: var(--break-xl);
-    margin: 0 auto;
+    position: absolute;
+    top: 8vh;
+    right: 175px;
+    height: 92vh;
+    width: calc(100% - 175px);
     padding: var(--m);
     background: var(--color-bright);
 }
 
-@media (max-width: 1500px) {
-    .container {
-        /*margin-right: 10vw;*/
-        /*margin-left: auto;*/
-    }
-}
 
-
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
     .container {
-        width: 100%;
-        padding: var(--xs);
+        right: 63px;
+        width: calc(100% - 63px);
     }
 }
 
@@ -193,6 +221,9 @@ nav {
     }
 
     .container {
+        display: block;
+        right: 0;
+        width: 100%;
         padding: 0;
     }
 }
@@ -244,8 +275,8 @@ nav {
 }
 
 .table {
-    width: 100%;
     border-collapse: collapse;
+    width: 100%;
 }
 
 .table thead {
@@ -266,6 +297,13 @@ nav {
     border-bottom: 1px solid var(--color-gray);
 }
 
+@media (max-width: 825px) {
+    .table tbody tr td {
+        max-width: calc(100% - 63px);
+        word-break: break-word;
+    }
+}
+
 @media (max-width: 768px) {
     .table thead {
         display: none;
@@ -276,7 +314,7 @@ nav {
     .table tr,
     .table td {
         display: block;
-        width: 100%;
+        max-width: 100%;
     }
 
     .table tbody tr {
@@ -285,9 +323,11 @@ nav {
     }
 
     .table tbody tr td {
+        max-width: 100%;
         text-align: right;
         padding-left: 35%;
         position: relative;
+        word-break: unset;
     }
 
     .table td:before {
@@ -298,6 +338,11 @@ nav {
         font-weight: bold;
         text-align: left;
     }
+}
+
+/* List */
+ul.no-list {
+    list-style: none;
 }
 
 /* Modal */
@@ -442,6 +487,12 @@ form label,
     flex-wrap: wrap;
 }
 
+
+.collapsed,
 .hidden {
     display: none !important;
+}
+
+.show {
+    display: initial !important;
 }

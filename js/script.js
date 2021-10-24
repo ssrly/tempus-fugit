@@ -1,7 +1,9 @@
 'use strict';
 
 jQuery(document).ready(function() {
+      let maxWidth = $('.container').outerWidth();
       setDefaultInputs(true);
+      handleSideMenu();
 
       if (!isLoggedIn()) {
         $('.login-out').click(function(event) {
@@ -12,6 +14,13 @@ jQuery(document).ready(function() {
       } else {
         setLogoutLink();
       }
+
+      $(window).on('resize', function() {
+        maxWidth = $(this).width();
+        if (maxWidth === 992 || maxWidth === 576) {
+          resetToggle();
+        }
+      });
 
       $('#btn-create').click(function() {
         setDefaultInputs();
@@ -189,6 +198,36 @@ jQuery(document).ready(function() {
         $('input[type="time"]').each(function() {
           $(this).val(getTimeFormat());
         });
+      }
+
+      function handleSideMenu() {
+        let toggleMenu = $('#toggle-menu');
+
+        toggleMenu.click(function() {
+          $(this).find('.fas').toggleClass('fa-times');
+          $(this).find('.fas').toggleClass('fa-bars');
+        });
+
+        toggleMenu.click(function() {
+          if (maxWidth > 576 && maxWidth < 992) {
+            $('#side-menu ul li a span.link-name').toggleClass('show');
+          }
+        });
+
+        toggleMenu.click(function() {
+          if (maxWidth <= 576) {
+            $('#side-menu ul').toggleClass('menu-active');
+            $('#side-menu ul li').each(function() {
+              $(this).animate({
+                opacity: 1,
+              }, 1300);
+            });
+          }
+        });
+      }
+
+      function resetToggle() {
+        $('.fa-times').removeClass('fa-times').addClass('fa-bars');
       }
 
       /**
@@ -452,5 +491,8 @@ jQuery(document).ready(function() {
       //   },
       // });
 
-    },
-);
+    }
+
+    ,
+)
+;

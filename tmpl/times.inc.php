@@ -12,7 +12,7 @@ $times = getAllTimesByUser($dbCon, $uid);
     <p>This view, shows all existing times tracking records.</p>
 </section>
 
-<section class="btn-group">
+<section class="">
     <button id="btn-create" class="btn btn-create" type="button" title="Create New Group">
         <i class="fas fa-plus"></i>
         <span>Add Time</span>

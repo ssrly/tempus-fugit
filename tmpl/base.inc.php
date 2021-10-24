@@ -18,6 +18,11 @@
 <body>
 <?php
 include_once './tmpl/element/header.inc.php'; ?>
+<div id="side-menu" class="menu">
+    <?php
+    include_once './tmpl/element/nav.inc.php';
+    ?>
+</div>
 <div class="container">
     <?php
     /** @var $msg /index.php */
@@ -32,11 +37,6 @@ include_once './tmpl/element/header.inc.php'; ?>
     /** @var $tmpl ./../index.php */
     include_once $tmpl; ?>
 
-    <div id="side-menu" class="menu">
-        <?php
-        include_once './tmpl/element/nav.inc.php';
-        ?>
-    </div>
 </div>
 <?php
 include_once './tmpl/element/footer.inc.php';

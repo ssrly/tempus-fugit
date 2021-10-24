@@ -4,7 +4,7 @@
         Training AG</p>
     <p>A comercial use at this stage is not planed.</p>
     <h3>Contact</h3>
-    <ul>
+    <ul class="no-list">
         <li>St. Reinhold</li>
         <li>Strasse 12</li>
         <li>09130 Chemnitz</li>
