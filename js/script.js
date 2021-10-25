@@ -17,9 +17,6 @@ jQuery(document).ready(function() {
 
       $(window).on('resize', function() {
         maxWidth = $(this).width();
-        if (maxWidth === 992 || maxWidth === 576) {
-          resetToggle();
-        }
       });
 
       $('#btn-create').click(function() {
@@ -200,34 +197,21 @@ jQuery(document).ready(function() {
         });
       }
 
+      /** handles responsive nav bar **/
       function handleSideMenu() {
         let toggleMenu = $('#toggle-menu');
 
         toggleMenu.click(function() {
-          $(this).find('.fas').toggleClass('fa-times');
-          $(this).find('.fas').toggleClass('fa-bars');
+          toggleMenu.find('.fas').toggleClass('fa-times');
+          toggleMenu.find('.fas').toggleClass('fa-bars');
+          $('#side-menu ul li a span.link-name').toggleClass('show');
+          $('#side-menu ul').toggleClass('menu-active');
+          $('#side-menu ul li').each(function() {
+            $(this).animate({
+              opacity: 1,
+            }, 1300);
+          });
         });
-
-        toggleMenu.click(function() {
-          if (maxWidth > 576 && maxWidth < 992) {
-            $('#side-menu ul li a span.link-name').toggleClass('show');
-          }
-        });
-
-        toggleMenu.click(function() {
-          if (maxWidth <= 576) {
-            $('#side-menu ul').toggleClass('menu-active');
-            $('#side-menu ul li').each(function() {
-              $(this).animate({
-                opacity: 1,
-              }, 1300);
-            });
-          }
-        });
-      }
-
-      function resetToggle() {
-        $('.fa-times').removeClass('fa-times').addClass('fa-bars');
       }
 
       /**
