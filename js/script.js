@@ -391,14 +391,16 @@ jQuery(document).ready(function() {
         for (let time of times) {
           let oldStart = new Date(`${time.startDate} ${time.startTime}`);
           let oldEnd = new Date(`${time.endDate} ${time.endTime}`);
-          if (start >= oldStart && start <= oldEnd) {
-            setErrorMsg(startDateFormField, 'form-start-date',
-                'Existing record for this time: ');
-            return false;
-          } else if (end >= oldStart && end <= oldEnd) {
-            setErrorMsg(endDateFormField, 'form-end-date',
-                'Existing record for this time: ');
-            return false;
+          if ($('#form-do').val() !== 'update') {
+            if (start >= oldStart && start <= oldEnd) {
+              setErrorMsg(startDateFormField, 'form-start-date',
+                  'Existing record for this time: ');
+              return false;
+            } else if (end >= oldStart && end <= oldEnd) {
+              setErrorMsg(endDateFormField, 'form-end-date',
+                  'Existing record for this time: ');
+              return false;
+            }
           }
         }
         return true;

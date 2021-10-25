@@ -23,7 +23,7 @@ WBS Training AG - IEPHPP – PHP Projekt (12.10. - 25.10.2021)
 
 ## Installing
 
-* MySQL dump in ./assets/doc/ --> import in your db
+* MySQL dump in ./assets/doc/wbsprojekt.sql --> import in your db
 * Set up the project in your document root
 * Access this document root in your browser
 * Admin account: a.admin@test.de PW: adminadmin

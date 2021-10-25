@@ -80,7 +80,7 @@ function emailValid(PDO $dbCon, array $values): bool
     $statement = $dbCon->prepare($sql);
     $statement->execute([$values['email']]);
     $user = $statement->fetch();
-    if (($user)) {
+    if (($user) && $user['id'] !== $values['id']) {
         $_SESSION['msg'] = 'A record "' . $values['email'] . '" already exists.';
         return false;
     }
@@ -99,7 +99,7 @@ function userNumberValid(PDO $dbCon, array $values): bool
     $statement = $dbCon->prepare($sql);
     $statement->execute([$values['user_number']]);
     $user = $statement->fetch();
-    if (($user)) {
+    if (($user) && $user['id'] !== $values['id']) {
         $_SESSION['msg'] = 'A record "' . $values['user_number'] . '" already exists.';
         return false;
     }
@@ -140,43 +140,46 @@ function createUser(PDO $dbCon): bool
 /**
  * @param PDO $dbCon
  * @param int $id
+ * @return bool
  */
-function updateUser(PDO $dbCon, int $id)
+function updateUser(PDO $dbCon, int $id): bool
 {
     //I hate PDO
     $values = getUserFormData();
-    if (!empty($values['pwd'])) {
-        $sql = "UPDATE `users`
+    if (emailValid($dbCon, $values) && userNumberValid($dbCon, $values)) {
+        if (!empty($values['pwd'])) {
+            $sql = "UPDATE `users`
                 SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,pwd = ?,is_admin = ?, updated_at = NOW()
                 WHERE id = ?";
-        $statement = $dbCon->prepare($sql);
-        $statement->execute([
-            $values['name'],
-            $values['firstname'],
-            $values['description'],
-            $values['email'],
-            $values['user_number'],
-            $values['pwd'],
-            $values['is_admin'],
-            $id
-        ]);
-        $_SESSION['msg'] = 'Success!';
-    } else {
-        $sql = "UPDATE `users`
+            $statement = $dbCon->prepare($sql);
+            $statement->execute([
+                $values['name'],
+                $values['firstname'],
+                $values['description'],
+                $values['email'],
+                $values['user_number'],
+                $values['pwd'],
+                $values['is_admin'],
+                $id
+            ]);
+        } else {
+            $sql = "UPDATE `users`
                 SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,is_admin = ?, updated_at = NOW()
                 WHERE id = ?";
-        $statement = $dbCon->prepare($sql);
-        $statement->execute([
-            $values['name'],
-            $values['firstname'],
-            $values['description'],
-            $values['email'],
-            $values['user_number'],
-            $values['is_admin'],
-            $id
-        ]);
-        $_SESSION['msg'] = 'Success!';
+            $statement = $dbCon->prepare($sql);
+            $statement->execute([
+                $values['name'],
+                $values['firstname'],
+                $values['description'],
+                $values['email'],
+                $values['user_number'],
+                $values['is_admin'],
+                $id
+            ]);
+        }
+        return true;
     }
+    return false;
 }
 
 /**
