@@ -442,65 +442,65 @@ jQuery(document).ready(function() {
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$/);
       });
 
-      // $('#user-form').validate({
-      //   rules: {
-      //     name: {
-      //       required: true,
-      //       rangelength: [2, 20],
-      //       nameFormat: true,
-      //     },
-      //     firstname: {
-      //       required: true,
-      //       rangelength: [2, 20],
-      //       nameFormat: true,
-      //     },
-      //     email: {
-      //       required: true,
-      //       mailFormat: true,
-      //     },
-      //     user_number: {
-      //       rangelength: [4, 9],
-      //       userNumberFormat: true,
-      //     },
-      //     pwd: {
-      //       required: function() {return $('#form-pwd').hasClass('required');},
-      //       pwdFormat: function() {return $('#form-pwd').hasClass('required');},
-      //     },
-      //     pwd_repeat: {
-      //       required: function() {return $('#form-pwd').hasClass('required');},
-      //       equalTo: '#form-pwd-repeat',
-      //     },
-      //   },
-      //   messages: {
-      //     name: {
-      //       required: 'Lastname is required',
-      //       rangelength: 'Allowed are: Between 2 and 20 Characters',
-      //       nameFormat: 'Allowed are: Letters, Whitespace, -, \', .',
-      //     },
-      //     firstname: {
-      //       required: 'Lastname is required',
-      //       rangelength: 'Allowed are: Between 2 and 20 Characters',
-      //       nameFormat: 'Allowed are: Letters, Whitespace, -, \', .',
-      //     },
-      //     email: {
-      //       required: 'E-Mail is required',
-      //       mailFormat: 'Examples: st@re.de, test@test.com, a@b.c',
-      //     },
-      //     user_number: {
-      //       rangelength: 'Allowed are: Between 4 and 9 Characters',
-      //       userNumberFormat: 'Allowed are: Letters, Numbers, Whitespace, -, .',
-      //     },
-      //     pwd: {
-      //       required: 'Password is required',
-      //       rangelength: 'Allowed are: Between 2 and 20 Characters',
-      //       pwdFormat: 'At least one: Letter(uppercase) and Letter(lowercase) and Number and one of these @$!%*?&',
-      //     },
-      //     pwd_repeat: {
-      //       required: 'Please repeat the Password',
-      //       equalTo: 'Passwords have to be identical',
-      //     },
-      //   },
-      // });
+      $('#user-form').validate({
+        rules: {
+          name: {
+            required: true,
+            rangelength: [2, 20],
+            nameFormat: true,
+          },
+          firstname: {
+            required: true,
+            rangelength: [2, 20],
+            nameFormat: true,
+          },
+          email: {
+            required: true,
+            mailFormat: true,
+          },
+          user_number: {
+            rangelength: [4, 9],
+            userNumberFormat: true,
+          },
+          pwd: {
+            required: function() {return $('#form-pwd').hasClass('required');},
+            pwdFormat: function() {return $('#form-pwd').hasClass('required');},
+          },
+          pwd_repeat: {
+            required: function() {return $('#form-pwd').hasClass('required');},
+            equalTo: '#form-pwd-repeat',
+          },
+        },
+        messages: {
+          name: {
+            required: 'Lastname is required',
+            rangelength: 'Allowed are: Between 2 and 20 Characters',
+            nameFormat: 'Allowed are: Letters, Whitespace, -, \', .',
+          },
+          firstname: {
+            required: 'Lastname is required',
+            rangelength: 'Allowed are: Between 2 and 20 Characters',
+            nameFormat: 'Allowed are: Letters, Whitespace, -, \', .',
+          },
+          email: {
+            required: 'E-Mail is required',
+            mailFormat: 'Examples: st@re.de, test@test.com, a@b.c',
+          },
+          user_number: {
+            rangelength: 'Allowed are: Between 4 and 9 Characters',
+            userNumberFormat: 'Allowed are: Letters, Numbers, Whitespace, -, .',
+          },
+          pwd: {
+            required: 'Password is required',
+            rangelength: 'Allowed are: Between 2 and 20 Characters',
+            pwdFormat: 'At least one: Letter(uppercase) and Letter(lowercase) and Number and one of these @$!%*?&',
+          },
+          pwd_repeat: {
+            required: 'Please repeat the Password',
+            equalTo: 'Passwords have to be identical',
+          },
+        },
+      });
 
     },
 );

@@ -10,8 +10,6 @@ if (!isset($_SESSION['token'])) {
     $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
 }
 
-var_dump($_SESSION);
-
 if (isset($_SESSION['msg'])) {
     $msg = $_SESSION['msg'];
     unset($_SESSION['msg']);

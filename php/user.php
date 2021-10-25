@@ -1,5 +1,8 @@
 <?php
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 require_once 'dbConnection.php';
 require_once 'functions.php';
 
@@ -24,15 +27,6 @@ if (isset($_POST['submit'])) {
     }
 
     redirect('/index.php?page=' . $_GET['page'] ?? '');
-}
-
-/**
- * @param bool $success
- * @return string
- */
-function getSuccessParam(bool $success): string
-{
-    return $success ? '&success=1' : '';
 }
 
 /**
@@ -80,7 +74,7 @@ function getUserFormData(): array
  * @param array $values
  * @return bool
  */
-function emailNotTaken(PDO $dbCon, array $values): bool
+function emailValid(PDO $dbCon, array $values): bool
 {
     $sql = "SELECT * FROM `users` WHERE email = ?";
     $statement = $dbCon->prepare($sql);
@@ -99,7 +93,7 @@ function emailNotTaken(PDO $dbCon, array $values): bool
  * @param array $values
  * @return bool
  */
-function userNumberNotTaken(PDO $dbCon, array $values): bool
+function userNumberValid(PDO $dbCon, array $values): bool
 {
     $sql = "SELECT * FROM `users` WHERE user_number = ?";
     $statement = $dbCon->prepare($sql);
@@ -120,7 +114,7 @@ function userNumberNotTaken(PDO $dbCon, array $values): bool
 function createUser(PDO $dbCon): bool
 {
     $values = getUserFormData();
-    if (emailNotTaken($dbCon, $values) && userNumberNotTaken($dbCon, $values)) {
+    if (emailValid($dbCon, $values) && userNumberValid($dbCon, $values)) {
         $sql = "INSERT INTO `users`(name,firstname,description,email,user_number,pwd,is_admin,created_at) 
             VALUES(?,?,?,?,?,?,?,NOW())";
         $statement = $dbCon->prepare($sql);
@@ -136,6 +130,7 @@ function createUser(PDO $dbCon): bool
             ]
         );
 
+        $_SESSION['msg'] = 'Success!';
         return true;
     }
 
@@ -166,6 +161,7 @@ function updateUser(PDO $dbCon, int $id)
             $values['is_admin'],
             $id
         ]);
+        $_SESSION['msg'] = 'Success!';
     } else {
         $sql = "UPDATE `users`
                 SET name = ?,firstname = ?,description = ?,email = ?,user_number = ?,is_admin = ?, updated_at = NOW()
@@ -180,6 +176,7 @@ function updateUser(PDO $dbCon, int $id)
             $values['is_admin'],
             $id
         ]);
+        $_SESSION['msg'] = 'Success!';
     }
 }
 

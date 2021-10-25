@@ -1,13 +1,5 @@
 <?php
 
-$devMode = false;
-if ($devMode) {
-//    $_SESSION['user_id'] = 4;
-//    $_SESSION['logged_in'] = true;
-//    $_SESSION['is_admin'] = true;
-    var_dump($_SESSION);
-}
-
 /**
  * @param string $dbDate
  * @param string $format

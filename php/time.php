@@ -1,5 +1,8 @@
 <?php
 
+if (!isset($_SESSION)) {
+    session_start();
+}
 require_once 'dbConnection.php';
 require_once 'functions.php';
 

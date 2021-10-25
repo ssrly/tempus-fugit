@@ -19,6 +19,7 @@ if (!empty($_POST) && $_POST['csrf_token'] === $_SESSION['token']) {
 
     if ($user && password_verify($pwd, $user['pwd'])) {
         login($user['id'], $user['is_admin']);
+        $_SESSION['msg'] = 'Logged In.';
     } else {
         $_SESSION['msg'] = 'Wrong login. Try again. Did you forget your password? Please contact an admin.';
     }

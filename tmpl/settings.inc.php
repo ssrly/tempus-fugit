@@ -41,10 +41,6 @@ $user = getUser($dbCon, $_SESSION['user_id']);
                     <i class="fas fa-edit"></i>
                     <span>Update</span>
                 </button>
-                <button class="btn btn-delete" type="button" title="Delete Group">
-                    <i class="fas fa-trash-alt"></i>
-                    <span>Delete</span>
-                </button>
             </td>
         </tr>
         </tbody>
