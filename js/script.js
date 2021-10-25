@@ -86,6 +86,9 @@ jQuery(document).ready(function() {
       if ($('section').hasClass('registration')) {
         $('.modal').toggleClass('hidden');
         $('#user-form').toggleClass('hidden');
+        $('.login-out').click(function() {
+          $('#user-form').toggleClass('hidden');
+        }).find('span').text('Register');
       }
 
       //TODO: activate
