@@ -179,6 +179,8 @@ nav {
 
 /* Footer */
 .footer {
+    display: flex;
+    align-items: center;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -341,6 +343,10 @@ nav {
 }
 
 /* List */
+ul.list {
+    margin: var(--m);
+}
+
 ul.no-list {
     list-style: none;
 }
@@ -482,6 +488,10 @@ section.msg {
 
 .text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .no-border {

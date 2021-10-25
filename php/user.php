@@ -144,7 +144,6 @@ function createUser(PDO $dbCon): bool
 function updateUser(PDO $dbCon, int $id)
 {
     //I hate PDO
-    //If I had more time, I would have written a shorter letter - Marcus Tullius Cicero, philosopher and statesman.
     $values = getUserFormData();
     if (!empty($values['pwd'])) {
         $sql = "UPDATE `users`
