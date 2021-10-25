@@ -1,14 +1,17 @@
 <?php
 
 require_once './php/time.php';
+require_once './php/user.php';
 
 /** @var $dbCon ./../php/dbConnection.php */
 $uid = (isset($_GET['uid']) && isAdmin()) ? $_GET['uid'] : $_SESSION['user_id'];
 $times = getAllTimesByUser($dbCon, $uid);
+$user = getUser($dbCon, $uid);
 ?>
 
 <section class="info-text">
     <h2>Times</h2>
+    <h3 class="">User: <?= $user['firstname'] . ' ' . $user['name'] ?></h3>
     <p>This view, shows all existing times tracking records.</p>
 </section>
 

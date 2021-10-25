@@ -10,12 +10,13 @@ h2 {
 }
 
 h3 {
-    margin-bottom: var(--s);
+    margin: var(--s);
     /*text-align: center;*/
 }
 
 p {
-    margin-bottom: var(--s);
+    /*padding: ;*/
+    margin: var(--s);
 }
 
 /* Header + Navigation */
@@ -197,9 +198,10 @@ nav {
     position: absolute;
     top: 8vh;
     right: 175px;
-    height: 92vh;
+    min-height: 95%;
+    height: auto;
     width: calc(100% - 175px);
-    padding: var(--m);
+    padding: var(--m) var(--m) 5vh var(--m);
     background: var(--color-bright);
 }
 
@@ -226,7 +228,7 @@ nav {
         display: block;
         right: 0;
         width: 100%;
-        padding: 0;
+        padding: 0 0 5vh 0;
     }
 }
 
@@ -345,9 +347,11 @@ nav {
 /* List */
 ul.list {
     margin: var(--m);
+    padding-left: var(--s);
 }
 
 ul.no-list {
+    margin: var(--m);
     list-style: none;
 }
 
@@ -468,7 +472,7 @@ form label,
 @media (max-width: 576px) {
     form input,
     form textarea {
-        width: 95%;
+        width: 92%;
     }
 
     form label.collapse {
@@ -478,6 +482,8 @@ form label,
 
 /* Misc */
 section.msg {
+    padding: var(--xxs);
+    margin-bottom: var(--m);
     text-align: center;
     background: var(--color-warning);
 }
