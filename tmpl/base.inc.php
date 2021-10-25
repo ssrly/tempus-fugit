@@ -27,7 +27,7 @@ include_once './tmpl/element/header.inc.php'; ?>
     <?php
     /** @var $msg /index.php */
     if (isset($msg)): ?>
-        <section id="section-msg">
+        <section class="msg">
             <h3><?= $msg ?></h3>
         </section>
     <?php

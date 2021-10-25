@@ -2,8 +2,6 @@
 
 jQuery(document).ready(function() {
       let maxWidth = $('.container').outerWidth();
-      setDefaultInputs(true);
-      handleSideMenu();
 
       if (!isLoggedIn()) {
         $('.login-out').click(function(event) {
@@ -13,7 +11,15 @@ jQuery(document).ready(function() {
         });
       } else {
         setLogoutLink();
+        $('#user-form').find('.required').each(function() {
+          if ($(this).is('#form-pwd') || $(this).is('#form-pwd-repeat')) {
+            $(this).toggleClass('required');
+          }
+        });
       }
+
+      setDefaultInputs(true);
+      handleSideMenu();
 
       $(window).on('resize', function() {
         maxWidth = $(this).width();
@@ -89,17 +95,16 @@ jQuery(document).ready(function() {
         $('.login-out').click(function() {
           $('#user-form').toggleClass('hidden');
         }).find('span').text('Register');
+        $('#form-do').val('register');
       }
 
-      //TODO: activate
       $('form').submit(function(event) {
-        // if ($(this).is('#time-form')) {
-        //   event.preventDefault();
-        //   $(this).find('.error').remove();
-        //   if (validateTimeForm($(this))) {
-        //     $(this).submit();
-        //   }
-        // }
+        if ($(this).is('#time-form')) {
+          $(this).find('.error').remove();
+          if (!validateTimeForm($(this)) && $('#form-do').val() !== 'delete') {
+            event.preventDefault();
+          }
+        }
       });
 
       /**
@@ -218,7 +223,7 @@ jQuery(document).ready(function() {
       }
 
       /**
-       * checks cookies
+       * checks cookies for login
        * @returns {boolean}
        */
       function isLoggedIn() {
@@ -363,25 +368,36 @@ jQuery(document).ready(function() {
       function validateTimeForm() {
         let times = getAllDbData();
         let startDateFormField = $('#form-start-date');
+        let startTimeFormField = $('#form-start-time');
         let endDateFormField = $('#form-end-date');
-        let start = new Date(
-            `${startDateFormField.val()} ${$('#form-start-time').val()}`);
-        let end = new Date(
-            `${endDateFormField.val()} ${$('#form-end-time').val()}`);
+        let endTimeFormField = $('#form-end-time');
 
-        //TODO: refactor
+        switch ('') {
+          case startDateFormField.val():
+          case startTimeFormField.val():
+            setErrorMsg(startDateFormField, 'form-start-date', 'Is required:');
+            return false;
+          case endDateFormField.val():
+          case endTimeFormField.val():
+            setErrorMsg(endDateFormField, 'form-end-date', 'Is required:');
+            return false;
+        }
+
+        let start = new Date(
+            `${startDateFormField.val()} ${startTimeFormField.val()}`);
+        let end = new Date(
+            `${endDateFormField.val()} ${endTimeFormField.val()}`);
+
         for (let time of times) {
           let oldStart = new Date(`${time.startDate} ${time.startTime}`);
           let oldEnd = new Date(`${time.endDate} ${time.endTime}`);
           if (start >= oldStart && start <= oldEnd) {
-            startDateFormField.focus();
-            startDateFormField.parent().
-                prepend(getLabel('Time conflict', 'form-start-date', ['error']));
+            setErrorMsg(startDateFormField, 'form-start-date',
+                'Existing record for this time: ');
             return false;
           } else if (end >= oldStart && end <= oldEnd) {
-            endDateFormField.focus();
-            endDateFormField.parent().
-                prepend(getLabel('Time conflict', 'form-end-date', ['error']));
+            setErrorMsg(endDateFormField, 'form-end-date',
+                'Existing record for this time: ');
             return false;
           }
         }
@@ -389,11 +405,21 @@ jQuery(document).ready(function() {
       }
 
       /**
+       * @param {HTMLElement}formField
+       * @param {string}htmlFor
+       * @param {string}msg
+       */
+      function setErrorMsg(formField, htmlFor, msg = '') {
+        formField.focus();
+        formField.parent().prepend(getLabel(msg, htmlFor, ['error']));
+      }
+
+      /**
        * @returns {[]} dbRecords
        */
       function getAllDbData() {
         let dbRecords = [];
-        $('table').find('.time-tr-table').each(function() {
+        $('table').find('.time-tr').each(function() {
           dbRecords.push($(this).data().dbrecord);
         });
         return dbRecords;
@@ -416,8 +442,6 @@ jQuery(document).ready(function() {
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$/);
       });
 
-      //TODO: activate
-
       // $('#user-form').validate({
       //   rules: {
       //     name: {
@@ -439,11 +463,11 @@ jQuery(document).ready(function() {
       //       userNumberFormat: true,
       //     },
       //     pwd: {
-      //       required: true,
-      //       pwdFormat: true,
+      //       required: function() {return $('#form-pwd').hasClass('required');},
+      //       pwdFormat: function() {return $('#form-pwd').hasClass('required');},
       //     },
       //     pwd_repeat: {
-      //       required: true,
+      //       required: function() {return $('#form-pwd').hasClass('required');},
       //       equalTo: '#form-pwd-repeat',
       //     },
       //   },
@@ -478,8 +502,5 @@ jQuery(document).ready(function() {
       //   },
       // });
 
-    }
-
-    ,
-)
-;
+    },
+);

@@ -8,15 +8,15 @@
     <div class="modal-body form-body">
         <div class="form-group">
             <label for="form-start-date">Start</label>
-            <input id="form-start-date" class="form-date-input" type="date" name="start_date">
+            <input id="form-start-date" class="form-date-input required" type="date" name="start_date">
             <label for="form-start-time" class="hidden"></label>
-            <input id="form-start-time" class="form-time-input" type="time" name="start_time">
+            <input id="form-start-time" class="form-time-input required" type="time" name="start_time">
         </div>
         <div class="form-group">
             <label for="form-end-date" aria-label="">End</label>
-            <input id="form-end-date" class="form-date-input" type="date" name="end_date">
+            <input id="form-end-date" class="form-date-input required" type="date" name="end_date">
             <label for="form-end-time" class="hidden"></label>
-            <input id="form-end-time" class="form-time-input" type="time" name="end_time">
+            <input id="form-end-time" class="form-time-input required" type="time" name="end_time">
         </div>
         <div class="form-group flex-wrap">
             <label for="form-description" class="label-textarea">Description</label>

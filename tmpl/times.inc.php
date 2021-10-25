@@ -34,7 +34,7 @@ $times = getAllTimesByUser($dbCon, $uid);
         <?php
         foreach ($times as $time):
             $dbRecordJson = getTimeJson($time); ?>
-            <tr class="" data-dbrecord="<?= $dbRecordJson; ?>">
+            <tr class="time-tr" data-dbrecord="<?= $dbRecordJson; ?>">
                 <td data-label="Start"><?= formatDate($time['start_at']); ?></td>
                 <td data-label="End"><?= formatDate($time['end_at']); ?></td>
                 <td data-label="Duration"><?= getDurationString($time['duration']); ?></td>
